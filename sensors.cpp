@@ -33,7 +33,7 @@ int main(){
 		if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
 			cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
 		}
-		if(BP.get_sensor(PORT_4, Touch) == 0){
+		if(BP.get_sensor(PORT_4, Touch) == 1){
 			cout << "Touch sensor was pressed" << endl;
 		}
 		if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
