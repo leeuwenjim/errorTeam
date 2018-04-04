@@ -322,3 +322,5 @@ class BrickPi3{
     int spi_read_32(uint8_t msg_type, uint32_t &value);
     int spi_read_string(uint8_t msg_type, char *str, uint8_t chars = 20);
 };
+
+#endif
