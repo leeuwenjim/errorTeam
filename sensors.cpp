@@ -30,20 +30,20 @@ int main(){
 	while (true){
 		error = 0;
 		
-		if (BP.get_sensor(PORT_3, Ultrasonic) == 0){
+		if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
 			cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
 		}
 		if(BP.get_sensor(PORT_4, Touch) == 0){
 			cout << "Touch sensor was pressed" << endl;
 		}
-		if(BP.get_sensor(PORT_1, Blacknwhitelinks) > 2400){
-			cout << "Left sees white" << endl;
+		if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
+			cout << "Left sees " << Blacknwhitelinks.reflected << endl;
 		}
 		else{
 			cout << "Left sees black" << endl;
 		}
-		if(BP.get_sensor(PORT_2, Blacknwhiterechts) > 2400){
-			cout << "Right sees white" << endl;
+		if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
+			cout << "Right sees " << Blacknwhiterechts.reflected << endl;
 		}
 		else{
 			cout << "Right sees black" << endl;
