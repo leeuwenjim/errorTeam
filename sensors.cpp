@@ -40,16 +40,16 @@ int main(){
 			cout << "Touch sensor not pressed" << endl;
 		}
 		if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
-			cout << "Left sees " << Blacknwhiterechts.reflected << endl;
-		}
-		else{
-			cout << "Left sees black" << endl;
-		}
-		if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
-			cout << "Right sees " << Blacknwhitelinks.reflected << endl;
+			cout << "Right sees " << Blacknwhiterechts.reflected << endl;
 		}
 		else{
 			cout << "Right sees black" << endl;
+		}
+		if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
+			cout << "Left sees " << Blacknwhitelinks.reflected << endl;
+		}
+		else{
+			cout << "Left sees black" << endl;
 		}
 		
 		sleep(1); //wait before next check
