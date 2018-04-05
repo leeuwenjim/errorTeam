@@ -34,10 +34,7 @@ int main(){
 			cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
 		}
 		if(BP.get_sensor(PORT_4, Touch) == 0){
-			cout << "Touch sensor was pressed" << endl;
-		}
-		else{
-			cout << "Touch sensor not pressed" << endl;
+			cout << "Touch sensor was pressed" << Touch.pressed << endl;
 		}
 		if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
 			cout << "Right sees " << Blacknwhiterechts.reflected << endl;
