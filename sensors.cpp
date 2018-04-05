@@ -17,10 +17,10 @@ int main(){
 	int error;
 	
 	//setting up sensors
-	BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
+	//BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
 	BP.set_sensor_type(PORT_1, SENSOR_TYPE_NXT_LIGHT_ON);
 	BP.set_sensor_type(PORT_2, SENSOR_TYPE_NXT_LIGHT_ON);
-	BP.set_sensor_type(PORT_4, SENSOR_TYPE_TOUCH);
+	BP.set_sensor_type(PORT_3, SENSOR_TYPE_TOUCH);
 	
 	sensor_ultrasonic_t Ultrasonic;
 	sensor_touch_t Touch;
@@ -28,11 +28,11 @@ int main(){
 	sensor_light_t Blacknwhiterechts;
 	
 	while (true){
-		error = 0;p
+		error = 0;
 		
-		if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
-			cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-		}
+		//if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
+		//	cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
+		//}
 		if(BP.get_sensor(PORT_4, Touch) == 0){
 			cout << "Touch sensor was pressed" << Touch.pressed << endl;
 		}
