@@ -68,7 +68,8 @@ int main() {
 	//INIT GRID
 	for (unsigned int i = 0; i < gridLength; i++) {
 		for (unsigned int j = 0; j < gridWidth; j++) {
-			grid[i][j] = new GridCell();
+			GridCell cell();
+			grid[i][j] = cell;
 		}
 	}
 	
