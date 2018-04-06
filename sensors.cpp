@@ -19,7 +19,7 @@ int ultrasonic(){
 	return Ultrasonic.cm;
 }
 
-int linksZW(){
+int leftBW(){
 	BP.set_sensor_type(PORT_1, SENSOR_TYPE_NXT_LIGHT_ON);
 	sensor_light_t Blacknwhitelinks;
 	if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
@@ -31,7 +31,7 @@ int linksZW(){
 	return Blacknwhitelinks.reflected;
 }
 
-int rechtsZW(){
+int rightBW(){
 	BP.set_sensor_type(PORT_2, SENSOR_TYPE_NXT_LIGHT_ON);
 	sensor_light_t Blacknwhiterechts;
 	if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
