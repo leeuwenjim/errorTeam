@@ -79,9 +79,16 @@ void goAroundObstacle() {
 		}
 	}
 	
+	seeSomething = true;
+	
+	while (seeSomething) {
+		
+	}
 	//DRIVE LITTLE FORWARD
 	//TURN RIGHT TO CHECK IF IT SEES THE OBJECT
 	
+	
+	//GET BACK TO WHERE LINE SHOULD BE (MAYBE ADD DETECTION)
 	forwardBack(portLeft, portRight, 50);
 	usleep(1000000 * i);
 	stopArnold();
