@@ -1,8 +1,12 @@
 #include "BrickPi3.h"
+#include <unistd.h>
 
 BrickPi3 BP;
 
 void exit_signal_handler(int signo);
+
+uint8_t portRight = PORT_B;
+uint8_t portLeft = PORT_C;
 
 void stopArnold(uint8_t port1, uint8_t port2){
     // Reset Arnold
@@ -39,17 +43,54 @@ int main() {
 
 	BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
 	
+	
 	sensor_ultrasonic_t Ultrasonic;
 	
 	if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
 			if (Ultrasonic.cm < 15) {
 				//OBSTACLE DETECTED
-			
+				goAroundAbstacle();
 			} else {
 				//NO OBSTACLE DETECTED
+				driveAhead();
 			}
 	}
 	
+}
+
+void goAroundObstacle() {
+	sensor_ultrasonic_t Ultrasonic;
+	bool seeSomething = true;
+	int i = 0;
+	
+	
+	while (seeSomething) {
+		turn(portLeft, portRight, 1082430, 50);
+		forwardBack(portLeft, portRight, 50);
+		usleep(1000000);
+		stopArnold();
+		turn(portLeft, portRight, 1082430, -50);
+		++i;
+		while (BP.get_sensor(PORT3, Ultrasonic) != 0) {
+			usleep(10);
+		}
+		if (Ultrasonic.cm > 15) {
+			seeSomething = false;
+		}
+	}
+	
+	//DRIVE LITTLE FORWARD
+	//TURN RIGHT TO CHECK IF IT SEES THE OBJECT
+	
+	forwardBack(portLeft, portRight, 50);
+	usleep(1000000 * i);
+	stopArnold();
+	turn(portLeft, portRight, 1082430, 50);
+	
+}
+
+void driveAhead() {
+	//EVENTUEEL LINE VOLG FUNCTIE
 }
 
 void exit_signal_handler(int signo){
