@@ -57,13 +57,14 @@ public:
 	
 }
 
-vector<vector<GridCell> > grid;
 Arnold arnold;
 
+//INIT GRID SIZE
+int gridWidth = 5;
+int gridLength = 5;
+GridCel grid[gridLength][gridWidth];
+
 int main() {
-	//INIT GRID SIZE
-	int gridWidth = 5;
-	int gridLength = 5;
 
 	//INIT GRID
 	for (unsigned int i = 0; i < gridLength; i++) {
