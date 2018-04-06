@@ -19,6 +19,7 @@ int ultrasonic(){
 	return Ultrasonic.cm;
 }
 
+int linksZW(){
 	BP.set_sensor_type(PORT_1, SENSOR_TYPE_NXT_LIGHT_ON);
 	sensor_light_t Blacknwhitelinks;
 	if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
