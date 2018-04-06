@@ -28,6 +28,7 @@ int linksZW(){
 	else{
 		cout << "Left sees black" << endl;
 	}
+	return Blacknwhitelinks.reflected;
 }
 
 int rechtsZW(){
@@ -39,6 +40,7 @@ int rechtsZW(){
 	else{
 		cout << "Right sees black" << endl;
 	}
+	return BlacknWhiterechts.reflected;
 }
 
 int main(){
