@@ -9,6 +9,38 @@ BrickPi3 BP;
 
 void exit_signal_handler(int signo);
 
+//Setting up sensors as functions so they can be reused
+int ultrasonic(){
+	BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
+	sensor_ultrasonic_t Ultrasonic;
+	if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
+			cout << "Ultrasonic sensor sees this distance in cm: ";
+	}
+	return Ultrasonic.cm;
+}
+
+int linksZW(){
+	BP.set_sensor_type(PORT_1, SENSOR_TYPE_NXT_LIGHT_ON);
+	sensor_light_t Blacknwhitelinks;
+	if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
+		cout << "Left sees " << Blacknwhitelinks.reflected << endl;
+	}
+	else{
+		cout << "Left sees black" << endl;
+	}
+}
+
+int rechtsZW(){
+	BP.set_sensor_type(PORT_2, SENSOR_TYPE_NXT_LIGHT_ON);
+	sensor_light_t Blacknwhiterechts;
+	if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
+		cout << "Right sees " << Blacknwhiterechts.reflected << endl;
+	}
+	else{
+		cout << "Right sees black" << endl;
+	}
+}
+
 int main(){
 	signal(SIGINT, exit_signal_handler); //exit function for ctrl c
 	
@@ -16,40 +48,12 @@ int main(){
 	
 	int error;
 	
-	//setting up sensors
-	BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
-	BP.set_sensor_type(PORT_1, SENSOR_TYPE_NXT_LIGHT_ON);
-	BP.set_sensor_type(PORT_2, SENSOR_TYPE_NXT_LIGHT_ON);
-	BP.set_sensor_type(PORT_4, SENSOR_TYPE_TOUCH);
-	
-	sensor_ultrasonic_t Ultrasonic;
-	sensor_touch_t Touch;
-	sensor_light_t Blacknwhitelinks;
-	sensor_light_t Blacknwhiterechts;
-	
-	while (true){
+	while (true){ //check sensors
 		error = 0;
-		
-		if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
-			cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-		}
-		if(BP.get_sensor(PORT_4, Touch) == 0){
-			cout << "Touch sensor was pressed" << Touch.pressed << endl;
-		}
-		if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
-			cout << "Right sees " << Blacknwhiterechts.reflected << endl;
-		}
-		else{
-			cout << "Right sees black" << endl;
-		}
-		if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
-			cout << "Left sees " << Blacknwhitelinks.reflected << endl;
-		}
-		else{
-			cout << "Left sees black" << endl;
-		}
-		
-		sleep(1); //wait before next check
+		ultrasonic();
+		linksZW();
+		rechtsZW();
+    		sleep(1); //wait before next check
 	}
 }
 
