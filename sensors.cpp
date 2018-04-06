@@ -53,7 +53,7 @@ int main(){
 		ultrasonic();
 		linksZW();
 		rechtsZW();
-		sleep(1); //wait before next check
+    		sleep(1); //wait before next check
 	}
 }
 
