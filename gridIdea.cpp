@@ -10,13 +10,8 @@ using namespace std;
 int moveAdder [4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
 class GridCell {
-private:
-	bool blocked;
-	
 public:
-	GridCell() {
-		blocked = false;
-	}
+	blocked = false;
 	
 	bool isBlocked() {
 		return blocked;
