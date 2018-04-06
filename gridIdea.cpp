@@ -23,7 +23,7 @@ public:
 	}
 	
 	void setBlocked(bool blocked) {
-		this.blocked = blocked;
+		this->blocked = blocked;
 	}
 	
 };
