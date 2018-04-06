@@ -93,9 +93,10 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
-    <File Name="obstacelAdvoid.cpp"/>
+    <File Name="obstacleAvoid.cpp"/>
     <File Name="BrickPi3.cpp"/>
     <File Name="BrickPi3.h"/>
     <File Name="sensors.cpp"/>
+    <File Name="arnold_callibreren.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

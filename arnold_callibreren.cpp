@@ -32,15 +32,26 @@ vector <uint16_t> calibrar(){
     if(ready != "yes"){
         calibrar();
     }
-    BP.getsensor(BWsensorleft, left);
-    BP.getsensor(BWsensorright, right);
+	
     vector<int> final;
+
+	while(BP.get_sensor(BWsensorleft, left) != 0) {
+		usleep(10);
+	} 
+	while(BP.get_sensor(BWsensorright, left) != 0) {
+		usleep(10);
+	}
     uint16_t leftwhite1 = left.reflected;
     uint16_t rightwhite1 = right.reflected;
+	
+	while(BP.get_sensor(BWsensorleft, left) != 0) {
+		usleep(10);
+	} 
+	while(BP.get_sensor(BWsensorright, left) != 0) {
+		usleep(10);
+	}
     uint16_t leftblack1 = left.reflected;
     uin16_t rightblack1 = right.reflected;
-
-
 
     //measure Black white sensor on spot one
     movement(50,50);

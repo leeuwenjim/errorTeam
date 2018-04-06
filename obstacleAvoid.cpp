@@ -82,6 +82,10 @@ void goAroundObstacle() {
 	seeSomething = true;
 	
 	while (seeSomething) {
+		forwardBack(portLeft, portRight, 50);
+		usleep(2000000);
+		stopArnold();
+		turn(portLeft, portRight, 1082430, 50);
 		
 	}
 	//DRIVE LITTLE FORWARD
