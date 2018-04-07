@@ -56,7 +56,7 @@ vector <int> calibrar() {
     rightW = bwright.reflected;
 
     movement(50, 50);
-    sleep(1000000);
+    usleep(1000000);
     movement(50, 0);
     if(leftBW() > (leftW+200)){
         leftB = leftBW();
@@ -70,7 +70,7 @@ vector <int> calibrar() {
     }
     if(leftBW() < (leftB-100) && rightBW() < (rightB-100)){
         movement(50,50);
-        sleep(2000000);
+        usleep(2000000);
     }
 
    //test values of Black white sensors on second spot
