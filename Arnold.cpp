@@ -20,33 +20,30 @@ int Arnold::getUltrasonic() {
 	sensor_ultrasonic_t Ultrasonic;
 	if(BP.get_sensor(Arnold::ultrasonic, Ultrasonic) == 0){
 			cout << "Ultrasonic sensor sees this distance in cm: ";
-		return Ultrasonic.cm;
 	}
-	return -1;
+	return Ultrasonic.cm;
 }
 
 int Arnold::getLeftBW() {
 	sensor_light_t Blacknwhitelinks;
 	if(BP.get_sensor(Arnold::BWsensorleft, Blacknwhitelinks) == 0){
 		cout << "Left sees " << Blacknwhitelinks.reflected << endl;
-		return Blacknwhitelinks.reflected;
 	}
 	else{
 		cout << "Left sees black" << endl;
 	}
-	return -1;
+	return Blacknwhitelinks.reflected;
 }
 
 int Arnold::getRightBW() {
 	sensor_light_t Blacknwhiterechts;
 	if(BP.get_sensor(Arnold::BWsensorright, Blacknwhiterechts) == 0){
 		cout << "Right sees " << Blacknwhiterechts.reflected << endl;
-		return BlacknWhiterechts.reflected;
 	}
 	else{
 		cout << "Right sees black" << endl;
 	}
-	return -1;
+	return BlacknWhiterechts.reflected;
 }
 
 void exit_signal_handler(int signo) {
