@@ -5,12 +5,12 @@
 
 class Arnold {
 private:
-	uint8_t motorleft = PORT_C;
-	uint8_t motorright = PORT_B;
-	uint16_t BWsensorleft = PORT_2;
-	uint16_t BWsensorright = PORT_1;
-	uint8_t motortop = PORT_D;
-	uint8_t ultrasonic = PORT_3;
+	uint8_t motorleft;
+	uint8_t motorright;
+	uint16_t BWsensorleft;
+	uint16_t BWsensorright;
+	uint8_t motortop;
+	uint8_t ultrasonic;
 public:
 	Arnold();
 	void move(uint8_t powerLeft, uint8_t powerRight);
