@@ -11,6 +11,14 @@ void exit_signal_handler(int signo);
 Arnold::Arnold() {
 	signal(SIGINT, exit_signal_handler);
 	BP.detect();
+	
+	motorleft = PORT_C;
+	motorright = PORT_B;
+	BWsensorleft = PORT_2;
+	BWsensorright = PORT_1;
+	motortop = PORT_D;
+	ultrasonic = PORT_3;
+	
 	BP.set_sensor_type(Arnold::BWsensorright, SENSOR_TYPE_NXT_LIGHT_ON);
 	BP.set_sensor_type(Arnold::BWsensorleft, SENSOR_TYPE_NXT_LIGHT_ON);
 	BP.set_sensor_type(Arnold::ultrasonic, SENSOR_TYPE_NXT_ULTRASONIC);
