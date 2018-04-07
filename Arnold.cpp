@@ -24,6 +24,11 @@ int Arnold::getUltrasonic() {
 	return Ultrasonic.cm;
 }
 
+void Arnold::move(uint8_t powerLeft, uint8_t powerRight) {
+    BP.set_motor_power(Arnold::motorleft, powerleft);
+    BP.set_motor_power(Arnold::motorright, powerright);	
+}
+
 int Arnold::getLeftBW() {
 	sensor_light_t Blacknwhitelinks;
 	if(BP.get_sensor(Arnold::BWsensorleft, Blacknwhitelinks) == 0){
