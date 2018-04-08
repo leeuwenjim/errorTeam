@@ -1,13 +1,13 @@
-#include "BrickPi3.h" //for BrickPi3, this file sets up the BrickPi for usage
-#include <iostream> //for cout
-#include <unistd.h> //for sleep
-#include <signal.h> //for exit signals
-#include <iomanip> //for setw and setprecision
+#include "BrickPi3.h" // For BrickPi3, this file sets up the BrickPi for usage
+#include <iostream> // For cout
+#include <unistd.h> // For sleep
+#include <signal.h> // For exit signals
+#include <iomanip> // For setw and setprecision
 using namespace std;
 
 BrickPi3 BP;
 
-// give portnumbers
+/// Gives portnumbers
 uint8_t motorleft = PORT_C;
 uint8_t motorright = PORT_B;
 uint16_t BWsensorleft = PORT_2;
@@ -18,18 +18,18 @@ uint8_t ultrasonic = PORT_3;
 void exit_signal_handler(int signo);
 
 void movement(uint8_t powerleft, uint8_t powerright){
-    // Move Arnold forward
+    /// Moves Arnold forward
     BP.set_motor_power(motorleft, powerleft);
     BP.set_motor_power(motorright, powerright);
 }
 
-vector <int> calibrar() {
+vector <int> calibrate() {
     string ready;
-    cout << "Place linebot on position with straight line (make sure both Black/White sensors are on white)" << endl;
-    cout << "Are you ready (yes?): " << endl;
+    cout << "Place Arnold in the right position on a straight line (make sure both lightsensors are on white)" << endl;
+    cout << "Are you ready (yes)?: " << endl;
     cin >> ready;
-    if (ready != "yes") {
-        calibrar();
+    if (ready != "yes") { /// Make sure robot is in position
+        calibrate();
     }
 
     int leftW;
@@ -49,49 +49,63 @@ vector <int> calibrar() {
 
 
     vector<int> values;
-
-    cout << "White left sees in spot 1 : " << leftBW() << endl;
+	
+	/// Calibrate white
+	/** Puts both values in variable, then moves robot to next spot to calibrate line values*/
+    cout << "White left lightlevel in spot 1 : " << leftBW() << endl;
     leftW = bwleft.reflected;
-    cout << "White right sees in spot 1 :  " << rightBW() << endl;
+    cout << "White right lightlevel in spot 1 :  " << rightBW() << endl;
     rightW = bwright.reflected;
 
     movement(50, 50);
     usleep(1000000);
     movement(50, 0);
+	
+	/// Calibrate black
+	/** Makes sure line values are higher than white values by a set margain. 
+	 * This to make sure the robot is clear what the line is. Robot then moves to check other side */
     if(leftBW() > (leftW+200)){
         leftB = leftBW();
         movement(0,50);
-        cout << "Black right sees in spot 1 :  " << leftB << endl;
+        cout << "Black right lightlevel in spot 1 :  " << leftB << endl;
     }
     if(rightBW() > (rightW+200)){
         rightB = rightBW();
         movement(0,50);
-        cout << "Black right sees in spot 1 :  " << rightB << endl;
+        cout << "Black right lightlevel in spot 1 :  " << rightB << endl;
     }
+
+	/// Make sure first values are set well
     if(leftBW() < (leftB-100) && rightBW() < (rightB-100)){
         movement(50,50);
         usleep(2000000);
     }
 
-   //test values of Black white sensors on second spot
-    cout << "White left sees in spot 1 : " << leftBW() << endl;
+   /// Test values of lightsensors on second spot
+   /** Repeat what happened in first test to make sure all values are calibrated well with a second test. 
+    * End result is the middle of 2 test values to ensure trustability*/
+	
+	/// White lightlevel values
+    cout << "White left lightlevel in spot 1 : " << leftBW() << endl;
     leftW2 = bwleft.reflected;
-    cout << "White right sees in spot 1 :  " << rightBW() << endl;
+    cout << "White right lightlevel in spot 1 :  " << rightBW() << endl;
     rightW2 = bwright.reflected;
-
+	
     movement(50, 0);
+	
+	/// Black lightlevel values
     if(leftBW() > (leftW2+200)){
         leftB2 = leftBW();
         movement(0,50);
-        cout << "Black right sees in spot 1 :  " << leftB2 << endl;
+        cout << "Black right lightlevel in spot 1 :  " << leftB2 << endl;
     }
     if(rightBW() > (rightW2+200)){
         rightB2 = rightBW();
         movement(0,50);
-        cout << "Black right sees in spot 1 :  " << rightB2 << endl;
+        cout << "Black right lightlevel in spot 1 :  " << rightB2 << endl;
     }
-    //getting average of the 2 spot measurements
-
+    
+	/// Getting average of the 2 spot measurements
     leftW3 = (leftW+leftW2)/2;
     leftB3 = (leftB+leftB2)/2;
     rightW3 = (rightW+rightW2)/2;
@@ -103,71 +117,44 @@ vector <int> calibrar() {
 
 
 
-
+/// Main is used in testing to ensure sensors are well set.
 int main(){
-	signal(SIGINT, exit_signal_handler); //exit function for ctrl c
+	signal(SIGINT, exit_signal_handler); /// Exit function for ctrl c
 	
-	BP.detect(); //make sure Pi is communicating and up to date
+	BP.detect(); /// Make sure Pi is communicating and up to date
 	
 	int error;
     string cont;
     
-    //setting up sensors
-	//BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
+    /// Setting up sensors
 	BP.set_sensor_type(BWsensorleft, SENSOR_TYPE_NXT_LIGHT_ON);
 	BP.set_sensor_type(BWsensorright, SENSOR_TYPE_NXT_LIGHT_ON);
 	
 	sensor_light_t bwleft;
 	sensor_light_t bwright;
-    //using measert Black/White sensor values and giving them 200 margin
-    vector<int> calibrateValues = calibrar();
+	
+    /// Using measured values and giving them 200 margin to ensure trustability
+    vector<int> calibrateValues = calibrate();
     
     int leftWhite = calibrateValues[0]+200;
     int leftBlack = calibrateValues[1]+200;
 	int rightWhite = calibrateValues[2]-200;
     int rightBlack = calibrateValues[3]-200;
     
-    //checking if Arnold is on wright position to start
-    cout << "Left Black/White sensor values are: " << calibrateValues[0] << "for white and: " <<calibrateValues[1] << "for black." << endl;
-    cout << "Right Black/White sensor values are: " << calibrateValues[2] << "for white and: " <<calibrateValues[3] << "for black." << endl;
-    cout << "Are you on starting spot? (yes?)" << endl;
+    /// Checking if Arnold is in right position to start
+    cout << "Left lightsensor values are: " << calibrateValues[0] << "for white and " <<calibrateValues[1] << "for black." << endl;
+    cout << "Right lightsensor values are: " << calibrateValues[2] << "for white and " <<calibrateValues[3] << "for black." << endl;
+    cout << "Are you on starting spot? (yes)?" << endl;
     cin >> cont;
     while(cont != "yes"){
     cout << endl;
     cout << "Are you on starting spot? (yes?)" << endl;
     cin >> cont;
     }
-    
-    
-    
-	while (true){
-		error = 0;
-        
-        //if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
-		//	cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-		//}
-
-        if(rightBW() > rightBlack){
-                //set right motor speed to lower value
-                movement(50,-50);
-        }
-        else{
-                //set right motor speed to normal value
-                movement(50,50);
-        }
-		if(leftBW() > leftBlack){
-                //set left motor speed to lower value
-                movement(-50,50);
-        }
-        else{
-                //set left motor speed to normal value
-                movement(50,50);
-        }
-    }
 }
 
 
-//Signal handler when Ctrl-C is pressed, makes sure nothing stays running
+///Signal handler when Ctrl-C is pressed, makes sure nothing stays running
 void exit_signal_handler(int signo){
 	if(signo == SIGINT){
 		BP.reset_all();
