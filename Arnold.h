@@ -17,6 +17,6 @@ public:
 	int getUltrasonic();
 	int getLeftBW();
 	int getRightBW();
-}
+};
 
 #endif
