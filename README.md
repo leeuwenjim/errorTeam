@@ -9,3 +9,9 @@ Gebruikte onderdelen:
   - 31313 Mindstorms EV3
   - BrickPi met Raspberry Pi model B
   - Oplaadpack
+  
+Gebruikte stijlen:
+- Doxygen commenting
+  - /// Voor main comments
+    /** Voor gedetaileerde uitleg*/ 
+- camelCase voor functies, uitgezonderd exit signal handler ivm opvallendheid
