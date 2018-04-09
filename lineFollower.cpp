@@ -19,13 +19,14 @@ int main() {
 	int increments = 1;
 	
 	while(true) {
-		usleep(10000);
 		bool leftSideOnLine = arnold.leftSideOnLine();
 		bool rightSideOnLine = arnold.rightSideOnLine();
 		
 		if (leftSideOnLine && rightSideOnLine) {
 			continue;
 		}
+		
+		usleep(5000);
 		
 		if (leftSideOnLine) {
 			if (currentLeftPower > minPower) {
