@@ -17,20 +17,15 @@ vector <int> calibrar() {
         calibrar();
     }
 
-    int leftW;
-    int rightW;
-    int leftB;
-    int rightB;
+    int leftW = 0;
+    int rightW =0;
 
-    int leftW2;
-    int rightW2;
-    int leftB2;
-    int rightB2;
 
-    int leftW3;
-    int leftB3;
-    int rightB3;
-    int rightW3;
+    int leftW2 = 0;
+    int rightW2 = 0;
+
+    int leftW3 =0;
+    int rightW3 = 0;
 
 
     vector<int> values;
@@ -46,26 +41,7 @@ vector <int> calibrar() {
     arnold.stop();
     sleep(2);
     arnold.move(20, 0);
-    if(arnold.getLeftBW() > (leftW+200)){
-        leftB = arnold.getLeftBW();
-	arnold.stop();
-	sleep(1);
-        arnold.move(0,20);
-        cout << "Black right sees in spot 1 :  " << leftB << endl;
-    }
-    if(arnold.getRightBW() > (rightW+200)){
-        rightB = arnold.getRightBW();
-	arnold.stop();
-	sleep(1);
-        arnold.move(0,20);
-        cout << "Black right sees in spot 1 :  " << rightB << endl;
-    }
-    if(arnold.getLeftBW() < (leftB-100) && arnold.getRightBW() < (rightB-100)){
-       	arnold.stop();
-	sleep(1);
-	arnold.move(20,20);
-        sleep(2);
-    }
+  
 
    //test values of Black white sensors on second spot
     cout << "White left sees in spot 1 : " << arnold.getLeftBW() << endl;
@@ -73,29 +49,12 @@ vector <int> calibrar() {
     cout << "White right sees in spot 1 :  " << arnold.getRightBW() << endl;
     rightW2 = arnold.getRightBW();
 
-    arnold.move(5, 0);
-    if(arnold.getLeftBW() > (leftW2+200)){
-       	arnold.stop();
-	sleep(1);
-	leftB2 = arnold.getLeftBW();
-        arnold.move(0,20);
-        cout << "Black right sees in spot 1 :  " << leftB2 << endl;
-    }
-    if(arnold.getRightBW() > (rightW2+200)){
-       	arnold.stop();
-	sleep(1);
-	rightB2 = arnold.getRightBW();
-        arnold.move(0,20);
-        cout << "Black right sees in spot 1 :  " << rightB2 << endl;
-    }
-    //getting average of the 2 spot measurements
+    
 
     leftW3 = (leftW+leftW2)/2;
-    leftB3 = (leftB+leftB2)/2;
     rightW3 = (rightW+rightW2)/2;
-    rightB3 = (rightB+rightB2)/2;
 
-    values = {leftW3, leftB3, rightW3, rightB3};
+    values = {leftW3, rightW3 };
     return values;
 }
 
@@ -110,20 +69,19 @@ int main(){
     vector<int> calibrateValues = calibrar();
     
     int leftWhite = calibrateValues[0]+200;
-    int leftBlack = calibrateValues[1]+200;
-    int rightWhite = calibrateValues[2]-200;
-    int rightBlack = calibrateValues[3]-200;
+    int rightWhite = calibrateValues[1]-200;
     
     //checking if Arnold is on wright position to start
-    cout << "Left Black/White sensor values are: " << calibrateValues[0] << "for white and: " <<calibrateValues[1] << "for black." << endl;
-    cout << "Right Black/White sensor values are: " << calibrateValues[2] << "for white and: " <<calibrateValues[3] << "for black." << endl;
+    cout << "Left Black/White sensor values are: " << calibrateValues[0] << "for white" << endl;
+    cout << "Right Black/White sensor values are: " << calibrateValues[2] << "for white"  << endl;
     cout << "Are you on starting spot? (yes?)" << endl;
     cin >> cont;
     while(cont != "yes"){
-    cout << endl;
-    cout << "Are you on starting spot? (yes?)" << endl;
-    cin >> cont;
+    	cout << endl;
+    	cout << "Are you on starting spot? (yes?)" << endl;
+    	cin >> cont;
     }
+	cout << "finished";
     
     
     
