@@ -39,8 +39,7 @@ vector <int> calibrar() {
     arnold.move(20, 20);
     sleep(2);
     arnold.stop();
-    sleep(2);
-    arnold.move(20, 0);
+
   
 
    //test values of Black white sensors on second spot
