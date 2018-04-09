@@ -32,6 +32,7 @@ public:
 	bool leftSideOnLine();
 	bool rightSideOnLine();
 	int setBWMargin(uint16_t margin);
+	void lineFollowAlgoritm();
 };
 
 #endif
