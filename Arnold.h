@@ -14,6 +14,7 @@ private:
 public:
 	Arnold();
 	void move(uint16_t powerLeft, uint16_t powerRight);
+	void stop();
 	int getUltrasonic();
 	int getLeftBW();
 	int getRightBW();
