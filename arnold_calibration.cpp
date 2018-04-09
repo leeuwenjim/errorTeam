@@ -53,43 +53,43 @@ vector <int> calibrar() {
 
     vector<int> values;
 
-    cout << "White left sees in spot 1 : " << arnold.leftBW() << endl;
-    leftW = arnold.leftBW();
-    cout << "White right sees in spot 1 :  " << arnold.rightBW() << endl;
-    rightW = arnold.rightBW();
+    cout << "White left sees in spot 1 : " << arnold.GetLeftBW() << endl;
+    leftW = arnold.GetLeftBW();
+    cout << "White right sees in spot 1 :  " << arnold.GetRightBW() << endl;
+    rightW = arnold.GetRightBW();
 
     movement(50, 50);
     usleep(1000000);
     movement(50, 0);
-    if(arnold.leftBW() > (leftW+200)){
-        leftB = arnold.leftBW();
+    if(arnold.GetLeftBW() > (leftW+200)){
+        leftB = arnold.GetLeftBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << leftB << endl;
     }
-    if(arnold.rightBW() > (rightW+200)){
-        rightB = arnold.rightBW();
+    if(arnold.GetRightBW() > (rightW+200)){
+        rightB = arnold.GetRightBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << rightB << endl;
     }
-    if(arnold.leftBW() < (leftB-100) && arnold.rightBW() < (rightB-100)){
+    if(arnold.GetLeftBW() < (leftB-100) && arnold.GetRightBW() < (rightB-100)){
         movement(50,50);
         usleep(2000000);
     }
 
    //test values of Black white sensors on second spot
-    cout << "White left sees in spot 1 : " << arnold.leftBW() << endl;
-    leftW2 = arnold.leftBW();
-    cout << "White right sees in spot 1 :  " << arnold.rightBW() << endl;
-    rightW2 = arnold.rightBW();
+    cout << "White left sees in spot 1 : " << arnold.GetLeftBW() << endl;
+    leftW2 = arnold.GetLeftBW();
+    cout << "White right sees in spot 1 :  " << arnold.GetRightBW() << endl;
+    rightW2 = arnold.GetRightBW();
 
     movement(50, 0);
-    if(arnold.leftBW() > (leftW2+200)){
-        leftB2 = arnold.leftBW();
+    if(arnold.GetLeftBW() > (leftW2+200)){
+        leftB2 = arnold.GetLeftBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << leftB2 << endl;
     }
-    if(rightBW() > (rightW2+200)){
-        rightB2 = arnold.rightBW();
+    if(arnold.GetRightBW() > (rightW2+200)){
+        rightB2 = arnold.GetRightBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << rightB2 << endl;
     }
