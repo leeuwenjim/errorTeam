@@ -41,29 +41,29 @@ vector <int> calibrar() {
     rightW = arnold.getRightBW();
 
     sleep(3);	
-    arnold.move(5, 5);
+    arnold.move(20, 20);
     sleep(2);
     arnold.stop();
     sleep(2);
-    arnold.move(5, 0);
+    arnold.move(20, 0);
     if(arnold.getLeftBW() > (leftW+200)){
         leftB = arnold.getLeftBW();
 	arnold.stop();
 	sleep(1);
-        arnold.move(0,5);
+        arnold.move(0,20);
         cout << "Black right sees in spot 1 :  " << leftB << endl;
     }
     if(arnold.getRightBW() > (rightW+200)){
         rightB = arnold.getRightBW();
 	arnold.stop();
 	sleep(1);
-        arnold.move(0,5);
+        arnold.move(0,20);
         cout << "Black right sees in spot 1 :  " << rightB << endl;
     }
     if(arnold.getLeftBW() < (leftB-100) && arnold.getRightBW() < (rightB-100)){
        	arnold.stop();
 	sleep(1);
-	arnold.move(5,5);
+	arnold.move(20,20);
         sleep(2);
     }
 
@@ -78,14 +78,14 @@ vector <int> calibrar() {
        	arnold.stop();
 	sleep(1);
 	leftB2 = arnold.getLeftBW();
-        arnold.move(0,5);
+        arnold.move(0,20);
         cout << "Black right sees in spot 1 :  " << leftB2 << endl;
     }
     if(arnold.getRightBW() > (rightW2+200)){
        	arnold.stop();
 	sleep(1);
 	rightB2 = arnold.getRightBW();
-        arnold.move(0,5);
+        arnold.move(0,20);
         cout << "Black right sees in spot 1 :  " << rightB2 << endl;
     }
     //getting average of the 2 spot measurements
