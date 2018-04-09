@@ -23,7 +23,7 @@ int main() {
 		bool rightSideOnLine = arnold.rightSideOnLine();
 		
 		if (leftSideOnLine && rightSideOnLine) {
-			usleep(15000);
+			usleep(25000);
 		}
 		
 		usleep(3000);
