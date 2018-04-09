@@ -38,8 +38,8 @@ void Arnold::move(uint16_t powerLeft, uint16_t powerRight) {
     //BP.set_motor_power(Arnold::motorleft, powerLeft);
     //BP.set_motor_power(Arnold::motorright, powerRight);
 	
-	BP.set_motor_dps(Arnold::motorleft, powerLeft);
-	BP.set_motor_dps(Arnold::motorright, powerRight);
+	BP.set_motor_power(Arnold::motorleft, powerLeft);
+	BP.set_motor_power(Arnold::motorright, powerRight);
 }
 
 void Arnold::stop(void)
