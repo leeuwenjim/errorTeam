@@ -107,15 +107,7 @@ int main(){
 	
 	int error;
     string cont;
-    
-    //setting up sensors
-	//BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
-	BP.set_sensor_type(BWsensorleft, SENSOR_TYPE_NXT_LIGHT_ON);
-	BP.set_sensor_type(BWsensorright, SENSOR_TYPE_NXT_LIGHT_ON);
-	
-	sensor_light_t bwleft;
-	sensor_light_t bwright;
-    //using measert Black/White sensor values and giving them 200 margin
+
     vector<int> calibrateValues = calibrar();
     
     int leftWhite = calibrateValues[0]+200;
