@@ -12,7 +12,7 @@ int main() {
 		arnold.getRightBW();
 		arnold.move(360, 360);
 		sleep(1);
-		arnold.move(0, 0);
+		arnold.stop();
 	}
 	
 }
