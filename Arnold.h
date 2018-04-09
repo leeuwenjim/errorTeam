@@ -13,7 +13,7 @@ private:
 	uint8_t ultrasonic;
 public:
 	Arnold();
-	void move(uint8_t powerLeft, uint8_t powerRight);
+	void move(uint16_t powerLeft, uint16_t powerRight);
 	int getUltrasonic();
 	int getLeftBW();
 	int getRightBW();
