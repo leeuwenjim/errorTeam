@@ -14,11 +14,18 @@ int main() {
 	int currentLeftPower = 15;
 	int currentRightPower = 15;
 	
+	
 	int increments = 1;
 	
 	while(true) {
+		bool leftSideOnLine = arnold.leftSideOnLine();
+		bool rightSideOnLine = arnold.rightSideOnLine();
 		
-		if (arnold.leftSideOnLine()) {
+		if (leftSideOnLine && rightSideOnLine) {
+			continue;
+		}
+		
+		if (leftSideOnLine) {
 			if (currentLeftPower > minPower) {
 				currentLeftPower -= increments;
 			}
@@ -28,7 +35,7 @@ int main() {
 			}
 		}
 		
-		if (arnold.rightSideOnLine()) {
+		if (rightSideOnLine) {
 			if (currentRightPower > minPower) {
 				currentRightPower -= increments;
 			}
