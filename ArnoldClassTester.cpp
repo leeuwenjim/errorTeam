@@ -13,6 +13,7 @@ int main() {
 		arnold.move(50, 50);
 		sleep(1);
 		arnold.stop();
+		sleep(1);
 	}
 	
 }
