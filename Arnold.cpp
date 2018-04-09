@@ -30,7 +30,7 @@ Arnold::Arnold() {
 
 int Arnold::getUltrasonic() {
 	sensor_ultrasonic_t Ultrasonic;
-	BP.get_sensor(Arnold::ultrasonic, Ultrasonic)
+	BP.get_sensor(Arnold::ultrasonic, Ultrasonic);
 	//if(BP.get_sensor(Arnold::ultrasonic, Ultrasonic) == 0){
 	//		cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
 	//}
