@@ -5,6 +5,8 @@
 #include <iomanip> //for setw and setprecision
 #include <unistd.h> //for sleep
 
+using namespace std;
+
 BrickPi3 BP;
 void exit_signal_handler(int signo);
 
