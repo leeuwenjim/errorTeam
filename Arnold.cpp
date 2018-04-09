@@ -43,6 +43,8 @@ void Arnold::move(uint16_t powerLeft, uint16_t powerRight) {
 	
 	BP.set_motor_power(Arnold::motorleft, powerLeft);
 	BP.set_motor_power(Arnold::motorright, powerRight);
+	this->currentLeftPower = powerLeft;
+	this->currentRightPower = powerRight;
 }
 
 void Arnold::turn_ultrasonic(int position){
@@ -64,6 +66,8 @@ void Arnold::stop(void)
 {
 	 BP.set_motor_power(Arnold::motorleft, 0);
 	 BP.set_motor_power(Arnold::motorright, 0);
+	 this->currentLeftPower = 0;
+	 this->currentRightPower = 0;
 }
 
 int Arnold::getLeftBW() {
@@ -142,6 +146,40 @@ bool Arnold::rightSideOnLine() {
 
 int Arnold::setBWMargin(uint16_t margin) {
 	this->BWMargin = margin;
+}
+
+void Arnold::lineFollowAlgoritm() {
+	bool leftSideOnLine = this->leftSideOnLine();
+	bool rightSideOnLine = this->rightSideOnLine();
+		
+	if (leftSideOnLine && rightSideOnLine) {
+		usleep(55000);
+	}
+	
+	usleep(1000);
+	
+	if (leftSideOnLine) {
+		if (this->currentLeftPower > this->minPower) {
+			this->currentLeftPower--;
+		}
+	} else {
+		if (this->currentLeftPower < this->maxPower) {
+			this->currentLeftPower++;
+		}
+	}
+	
+	if (rightSideOnLine) {
+		if (this->currentRightPower > this->minPower) {
+			this->currentRightPower--;
+		}
+	} else {
+		if (this->currentRightPower < this->maxPower) {
+			this->currentRightPower++;
+		}
+	}
+	
+	this->move(this->currentLeftPower, this->currentRightPower);
+		
 }
 
 void exit_signal_handler(int signo) {

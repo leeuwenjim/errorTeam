@@ -14,6 +14,10 @@ private:
 	int leftWhiteValue;
 	int rightWhiteValue;
 	int BWMargin = 150;
+	int maxLineFollowPower = 40;
+	int minLineFollowPower = -15;
+	int currentLeftPower = 15;
+	int currentRightPower = 15;
 public:
 	Arnold();
 	void move(uint16_t powerLeft, uint16_t powerRight);
