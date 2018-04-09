@@ -19,7 +19,7 @@ int main() {
 	int increments = 1;
 	
 	while(true) {
-		usleep(100);
+		usleep(10000);
 		bool leftSideOnLine = arnold.leftSideOnLine();
 		bool rightSideOnLine = arnold.rightSideOnLine();
 		
