@@ -41,6 +41,7 @@ vector <int> calibrar() {
     cout << "White right sees in spot 1 :  " << arnold.getRightBW() << endl;
     rightW = arnold.getRightBW();
 
+    usleep(1000000);	
     arnold.move(50, 50);
     usleep(1000000);
     arnold.move(50, 0);
