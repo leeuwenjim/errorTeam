@@ -43,19 +43,27 @@ vector <int> calibrar() {
     sleep(3);	
     arnold.move(5, 5);
     sleep(2);
+    arnold.stop();
+    sleep(2);
     arnold.move(5, 0);
     if(arnold.getLeftBW() > (leftW+200)){
         leftB = arnold.getLeftBW();
+	arnold.stop();
+	sleep(1);
         arnold.move(0,5);
         cout << "Black right sees in spot 1 :  " << leftB << endl;
     }
     if(arnold.getRightBW() > (rightW+200)){
         rightB = arnold.getRightBW();
+	arnold.stop();
+	sleep(1);
         arnold.move(0,5);
         cout << "Black right sees in spot 1 :  " << rightB << endl;
     }
     if(arnold.getLeftBW() < (leftB-100) && arnold.getRightBW() < (rightB-100)){
-        arnold.move(5,5);
+       	arnold.stop();
+	sleep(1);
+	arnold.move(5,5);
         sleep(2);
     }
 
@@ -67,12 +75,16 @@ vector <int> calibrar() {
 
     arnold.move(5, 0);
     if(arnold.getLeftBW() > (leftW2+200)){
-        leftB2 = arnold.getLeftBW();
+       	arnold.stop();
+	sleep(1);
+	leftB2 = arnold.getLeftBW();
         arnold.move(0,5);
         cout << "Black right sees in spot 1 :  " << leftB2 << endl;
     }
     if(arnold.getRightBW() > (rightW2+200)){
-        rightB2 = arnold.getRightBW();
+       	arnold.stop();
+	sleep(1);
+	rightB2 = arnold.getRightBW();
         arnold.move(0,5);
         cout << "Black right sees in spot 1 :  " << rightB2 << endl;
     }
@@ -99,7 +111,7 @@ int main(){
     
     int leftWhite = calibrateValues[0]+200;
     int leftBlack = calibrateValues[1]+200;
-	int rightWhite = calibrateValues[2]-200;
+    int rightWhite = calibrateValues[2]-200;
     int rightBlack = calibrateValues[3]-200;
     
     //checking if Arnold is on wright position to start
