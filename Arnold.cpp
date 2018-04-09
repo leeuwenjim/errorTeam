@@ -76,3 +76,15 @@ void exit_signal_handler(int signo) {
 		exit(-1);
 	}
 }
+
+void Arnold::turn_ultrasonic(int position){
+	if(position ==1){
+		BP.set_motor_position(0)
+	}
+	elif(position ==2){
+		BP.set_motor_position(90)
+	}
+	elif(position == 3){
+		BP.set_motor_position(180)
+	}
+}
