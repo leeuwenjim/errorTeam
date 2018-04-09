@@ -11,6 +11,8 @@ private:
 	uint16_t BWsensorright;
 	uint8_t motortop;
 	uint8_t ultrasonic;
+	int leftWhiteValue;
+	int rightWhiteValue;
 public:
 	Arnold();
 	void move(uint16_t powerLeft, uint16_t powerRight);
@@ -19,6 +21,9 @@ public:
 	int getUltrasonic();
 	int getLeftBW();
 	int getRightBW();
+	int getLeftWhiteValue();
+	int getRightWhiteValue();
+	void calibrate();
 };
 
 #endif

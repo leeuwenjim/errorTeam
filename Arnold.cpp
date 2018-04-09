@@ -87,6 +87,42 @@ int Arnold::getRightBW() {
 	return Blacknwhiterechts.reflected;
 }
 
+
+int Arnold::getLeftWhiteValue() {
+	return leftWhiteValue;
+}
+
+int Arnold::getRightWhiteValue() {
+	return rightWhiteValue;
+}
+
+void Arnold::calibrate() {
+	string ready;
+    cout << "Place linebot on position with straight line (make sure both Black/White sensors are on white)" << endl;
+    cout << "Are you ready (yes?): " << endl;
+    cin >> ready;
+    if(ready != "yes"){
+        this -> calibrate();
+    }
+	
+    uint16_t leftwhite1 = this->getLeftBW();
+    uint16_t rightwhite1 = this->getRightBW();
+	
+	this->move(30,30);
+	usleep(2000000);
+	this->stop();
+	
+	uint16_t leftwhite2 = this->getLeftBW();
+	uint16_t rightwhite2 = this->getRightBW();
+	
+	this->leftWhiteValue = (leftwhite1 + leftwhite2) / 2;
+	this->rightWhiteValue = (rightwhite1 + rightwhite2) / 2;
+	
+	cout << "White left: " << this->getLeftWhiteValue() << endl;
+	cout << "White right: " << this->getRightWhiteValue() << endl;
+	
+}
+
 void exit_signal_handler(int signo) {
 	if (signo == SIGINT) {
 		BP.reset_all();
