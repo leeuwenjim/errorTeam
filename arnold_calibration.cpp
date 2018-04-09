@@ -56,7 +56,7 @@ vector <int> calibrar() {
         cout << "Black right sees in spot 1 :  " << rightB << endl;
     }
     if(arnold.getLeftBW() < (leftB-100) && arnold.getRightBW() < (rightB-100)){
-        arnold.move(50,50);
+        arnold.move(5,5);
         usleep(2000000);
     }
 
