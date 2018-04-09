@@ -2,7 +2,7 @@
 
 Arnold arnold;
 
-void main() {
+int main() {
 
 	arnold.calibrate();
 	
