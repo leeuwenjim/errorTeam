@@ -8,13 +8,6 @@ using namespace std;
 
 BrickPi3 BP;
 
-// give portnumbers
-uint8_t motorleft = PORT_C;
-uint8_t motorright = PORT_B;
-uint16_t BWsensorleft = PORT_2;
-uint16_t BWsensorright = PORT_1;
-uint8_t motortop = PORT_D;
-uint8_t ultrasonic = PORT_3;
 
 void exit_signal_handler(int signo);
 
@@ -143,31 +136,8 @@ int main(){
     
     
     
-	while (true){
-		error = 0;
-        
-        //if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
-		//	cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-		//}
+ }
 
-        if(rightBW() > rightBlack){
-                //set right motor speed to lower value
-                movement(50,-50);
-        }
-        else{
-                //set right motor speed to normal value
-                movement(50,50);
-        }
-		if(leftBW() > leftBlack){
-                //set left motor speed to lower value
-                movement(-50,50);
-        }
-        else{
-                //set left motor speed to normal value
-                movement(50,50);
-        }
-    }
-}
 
 
 //Signal handler when Ctrl-C is pressed, makes sure nothing stays running
