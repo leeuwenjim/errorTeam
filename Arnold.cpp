@@ -53,10 +53,11 @@ void Arnold::turn_ultrasonic(int position){
 		
 	}
 	else if(position == 2){
-		BP.set_motor_dps(Arnold::motortop ,180);
+		BP.set_motor_dps(Arnold::motortop ,-90);
 		sleep(1);
 		BP.set_motor_dps(Arnold::motortop ,0);
 	}
+	
 }
 
 void Arnold::stop(void)
