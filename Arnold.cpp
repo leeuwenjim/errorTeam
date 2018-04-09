@@ -42,6 +42,12 @@ void Arnold::move(uint16_t powerLeft, uint16_t powerRight) {
 	BP.set_motor_dps(Arnold::motorright, powerRight);
 }
 
+void Arnold::stop(void)
+{
+	 BP.set_motor_power(Arnold::motorleft, 0);
+	 BP.set_motor_power(Arnold::motorright, 0);
+}
+
 int Arnold::getLeftBW() {
 	sensor_light_t Blacknwhitelinks;
 	if(BP.get_sensor(Arnold::BWsensorleft, Blacknwhitelinks) == 0){
