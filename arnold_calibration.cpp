@@ -40,9 +40,9 @@ vector <int> calibrar() {
     cout << "White right sees in spot 1 :  " << arnold.getRightBW() << endl;
     rightW = arnold.getRightBW();
 
-    usleep(1000000);	
+    sleep(3);	
     arnold.move(5, 5);
-    usleep(1000000);
+    sleep(2);
     arnold.move(5, 0);
     if(arnold.getLeftBW() > (leftW+200)){
         leftB = arnold.getLeftBW();
@@ -56,7 +56,7 @@ vector <int> calibrar() {
     }
     if(arnold.getLeftBW() < (leftB-100) && arnold.getRightBW() < (rightB-100)){
         arnold.move(5,5);
-        usleep(2000000);
+        sleep(2);
     }
 
    //test values of Black white sensors on second spot
