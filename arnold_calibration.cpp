@@ -55,7 +55,7 @@ vector <int> calibrar() {
 
     cout << "White left sees in spot 1 : " << arnold.getLeftBW() << endl;
     leftW = arnold.getLeftBW();
-    cout << "White right sees in spot 1 :  " << arnold.GetRightBW() << endl;
+    cout << "White right sees in spot 1 :  " << arnold.getRightBW() << endl;
     rightW = arnold.getRightBW();
 
     movement(50, 50);
@@ -83,12 +83,12 @@ vector <int> calibrar() {
     rightW2 = arnold.getRightBW();
 
     movement(50, 0);
-    if(arnold.GetLeftBW() > (leftW2+200)){
+    if(arnold.getLeftBW() > (leftW2+200)){
         leftB2 = arnold.getLeftBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << leftB2 << endl;
     }
-    if(arnold.GetRightBW() > (rightW2+200)){
+    if(arnold.getRightBW() > (rightW2+200)){
         rightB2 = arnold.getRightBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << rightB2 << endl;
