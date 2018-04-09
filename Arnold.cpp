@@ -30,9 +30,10 @@ Arnold::Arnold() {
 
 int Arnold::getUltrasonic() {
 	sensor_ultrasonic_t Ultrasonic;
-	if(BP.get_sensor(Arnold::ultrasonic, Ultrasonic) == 0){
-			cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-	}
+	BP.get_sensor(Arnold::ultrasonic, Ultrasonic)
+	//if(BP.get_sensor(Arnold::ultrasonic, Ultrasonic) == 0){
+	//		cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
+	//}
 	return Ultrasonic.cm;
 }
 
@@ -68,10 +69,10 @@ void Arnold::stop(void)
 int Arnold::getLeftBW() {
 	sensor_light_t Blacknwhitelinks;
 	if(BP.get_sensor(Arnold::BWsensorleft, Blacknwhitelinks) == 0){
-		cout << "Left sees " << Blacknwhitelinks.reflected << endl;
+		//cout << "Left sees " << Blacknwhitelinks.reflected << endl;
 	}
 	else{
-		cout << "Left sees black" << endl;
+		//cout << "Left sees black" << endl;
 	}
 	return Blacknwhitelinks.reflected;
 }
@@ -79,10 +80,10 @@ int Arnold::getLeftBW() {
 int Arnold::getRightBW() {
 	sensor_light_t Blacknwhiterechts;
 	if(BP.get_sensor(Arnold::BWsensorright, Blacknwhiterechts) == 0){
-		cout << "Right sees " << Blacknwhiterechts.reflected << endl;
+		//cout << "Right sees " << Blacknwhiterechts.reflected << endl;
 	}
 	else{
-		cout << "Right sees black" << endl;
+		//cout << "Right sees black" << endl;
 	}
 	return Blacknwhiterechts.reflected;
 }

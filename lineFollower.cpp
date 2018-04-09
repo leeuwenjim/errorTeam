@@ -36,6 +36,8 @@ int main() {
 			}
 		}
 		
+		arnold.move(currentLeftPower, currentRightPower);
+		
 	}
 	
 }
