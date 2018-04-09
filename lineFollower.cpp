@@ -9,15 +9,17 @@ int main() {
 
 	arnold.calibrate();
 	int maxPower = 30;
+	int minPower = -30;
+	
 	int currentLeftPower = 15;
 	int currentRightPower = 15;
 	
-	int increments = 5;
+	int increments = 1;
 	
 	while(true) {
 		
 		if (arnold.leftSideOnLine()) {
-			if (currentLeftPower > 0) {
+			if (currentLeftPower > minPower) {
 				currentLeftPower -= increments;
 			}
 		} else {
@@ -27,7 +29,7 @@ int main() {
 		}
 		
 		if (arnold.rightSideOnLine()) {
-			if (currentRightPower > 0) {
+			if (currentRightPower > minPower) {
 				currentRightPower -= increments;
 			}
 		} else {
