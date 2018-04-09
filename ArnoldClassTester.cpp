@@ -6,6 +6,7 @@ int main() {
 
 	Arnold arnold;
 	
+	while(true) {
 		arnold.getUltrasonic();
 		arnold.getLeftBW();
 		arnold.getRightBW();
@@ -18,7 +19,7 @@ int main() {
 		sleep(2);
 		arnold.stop();
 		
-		
+	}
 		
 	
 	
