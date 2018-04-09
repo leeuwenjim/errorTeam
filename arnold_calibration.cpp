@@ -67,8 +67,8 @@ int main(){
 
     vector<int> calibrateValues = calibrar();
     
-    int leftWhite = calibrateValues[0]+200;
-    int rightWhite = calibrateValues[1]-200;
+    int leftWhite = calibrateValues[0];
+    int rightWhite = calibrateValues[1];
     
     //checking if Arnold is on wright position to start
     cout << "Left Black/White sensor values are: " << calibrateValues[0] << "for white" << endl;
