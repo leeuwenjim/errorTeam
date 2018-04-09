@@ -1,4 +1,3 @@
-#include "BrickPi3.h" //for BrickPi3, this file sets up the BrickPi for usage
 #include "Arnold.h" //for using sensor functions
 #include <iostream> //for cout
 #include <unistd.h> //for sleep
@@ -26,6 +25,8 @@ void movement(uint8_t powerleft, uint8_t powerright){
 }
 
 vector <int> calibrar() {
+    Arnold arnold;
+    
     string ready;
     cout << "Place linebot on position with straight line (make sure both Black/White sensors are on white)" << endl;
     cout << "Are you ready (yes?): " << endl;
@@ -52,43 +53,43 @@ vector <int> calibrar() {
 
     vector<int> values;
 
-    cout << "White left sees in spot 1 : " << leftBW() << endl;
-    leftW = bwleft.reflected;
-    cout << "White right sees in spot 1 :  " << rightBW() << endl;
-    rightW = bwright.reflected;
+    cout << "White left sees in spot 1 : " << arnold.leftBW() << endl;
+    leftW = arnold.leftBW();
+    cout << "White right sees in spot 1 :  " << arnold.rightBW() << endl;
+    rightW = arnold.rightBW();
 
     movement(50, 50);
     usleep(1000000);
     movement(50, 0);
-    if(leftBW() > (leftW+200)){
-        leftB = leftBW();
+    if(arnold.leftBW() > (leftW+200)){
+        leftB = arnold.leftBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << leftB << endl;
     }
-    if(rightBW() > (rightW+200)){
-        rightB = rightBW();
+    if(arnold.rightBW() > (rightW+200)){
+        rightB = arnold.rightBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << rightB << endl;
     }
-    if(leftBW() < (leftB-100) && rightBW() < (rightB-100)){
+    if(arnold.leftBW() < (leftB-100) && arnold.rightBW() < (rightB-100)){
         movement(50,50);
         usleep(2000000);
     }
 
    //test values of Black white sensors on second spot
-    cout << "White left sees in spot 1 : " << leftBW() << endl;
-    leftW2 = bwleft.reflected;
-    cout << "White right sees in spot 1 :  " << rightBW() << endl;
-    rightW2 = bwright.reflected;
+    cout << "White left sees in spot 1 : " << arnold.leftBW() << endl;
+    leftW2 = arnold.leftBW();
+    cout << "White right sees in spot 1 :  " << arnold.rightBW() << endl;
+    rightW2 = arnold.rightBW();
 
     movement(50, 0);
-    if(leftBW() > (leftW2+200)){
-        leftB2 = leftBW();
+    if(arnold.leftBW() > (leftW2+200)){
+        leftB2 = arnold.leftBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << leftB2 << endl;
     }
     if(rightBW() > (rightW2+200)){
-        rightB2 = rightBW();
+        rightB2 = arnold.rightBW();
         movement(0,50);
         cout << "Black right sees in spot 1 :  " << rightB2 << endl;
     }
