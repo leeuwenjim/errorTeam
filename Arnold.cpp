@@ -43,8 +43,8 @@ void Arnold::move(uint16_t powerLeft, uint16_t powerRight) {
 	
 	BP.set_motor_power(Arnold::motorleft, powerLeft);
 	BP.set_motor_power(Arnold::motorright, powerRight);
-	this->currentLeftPower = powerLeft;
-	this->currentRightPower = powerRight;
+	//this->currentLeftPower = powerLeft;
+	//this->currentRightPower = powerRight;
 }
 
 void Arnold::turn_ultrasonic(int position){
@@ -66,8 +66,8 @@ void Arnold::stop(void)
 {
 	 BP.set_motor_power(Arnold::motorleft, 0);
 	 BP.set_motor_power(Arnold::motorright, 0);
-	 this->currentLeftPower = 0;
-	 this->currentRightPower = 0;
+	 //this->currentLeftPower = 0;
+	 //this->currentRightPower = 0;
 }
 
 int Arnold::getLeftBW() {
