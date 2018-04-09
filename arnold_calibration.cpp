@@ -62,7 +62,7 @@ vector <int> calibrar() {
 
 int main(){
 	
-	int error;
+    int error;
     string cont;
 
     vector<int> calibrateValues = calibrar();
@@ -72,7 +72,7 @@ int main(){
     
     //checking if Arnold is on wright position to start
     cout << "Left Black/White sensor values are: " << calibrateValues[0] << "for white" << endl;
-    cout << "Right Black/White sensor values are: " << calibrateValues[2] << "for white"  << endl;
+    cout << "Right Black/White sensor values are: " << calibrateValues[1] << "for white"  << endl;
     cout << "Are you on starting spot? (yes?)" << endl;
     cin >> cont;
     while(cont != "yes"){
