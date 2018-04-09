@@ -9,7 +9,7 @@ int main() {
 		arnold.getUltrasonic();
 		arnold.getLeftBW();
 		arnold.getRightBW();
-		arnold.turn_ultrasonic(2);
+		arnold.turn_ultrasonic(1);
 		
 		
 		
