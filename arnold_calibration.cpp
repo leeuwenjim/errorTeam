@@ -1,7 +1,6 @@
 #include "Arnold.h" //for using sensor functions
 #include <iostream> //for cout
 #include <unistd.h> //for sleep
-#include <signal.h> //for exit signals
 #include <iomanip> //for setw and setprecision
 #include <vector> //for using vectors
 using namespace std;
