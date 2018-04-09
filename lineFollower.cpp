@@ -9,8 +9,8 @@ Arnold arnold;
 int main() {
 
 	arnold.calibrate();
-	int maxPower = 30;
-	int minPower = -30;
+	int maxPower = 40;
+	int minPower = -15;
 	
 	int currentLeftPower = 15;
 	int currentRightPower = 15;
@@ -23,7 +23,7 @@ int main() {
 		bool rightSideOnLine = arnold.rightSideOnLine();
 		
 		if (leftSideOnLine && rightSideOnLine) {
-			usleep(35000);
+			usleep(55000);
 		}
 		
 		usleep(1000);
