@@ -15,7 +15,7 @@ public:
 	Arnold();
 	void move(uint16_t powerLeft, uint16_t powerRight);
 	void stop();
-	void turn_ultrasonic();
+	void turn_ultrasonic(int position);
 	int getUltrasonic();
 	int getLeftBW();
 	int getRightBW();
