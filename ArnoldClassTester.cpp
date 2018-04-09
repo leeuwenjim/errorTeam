@@ -9,11 +9,8 @@ int main() {
 		arnold.getUltrasonic();
 		arnold.getLeftBW();
 		arnold.getRightBW();
-		arnold.turn_ultrasonic(1);
-		sleep(2);
-		arnold.turn_ultrasonic(2);
-		sleep(2);
-		arnold.turn_ultrasonic(3);
+		arnold.turn_ultrasonic(0);
+		
 		
 		
 	
