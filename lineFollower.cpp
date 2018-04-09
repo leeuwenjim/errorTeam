@@ -23,10 +23,10 @@ int main() {
 		bool rightSideOnLine = arnold.rightSideOnLine();
 		
 		if (leftSideOnLine && rightSideOnLine) {
-			continue;
+			usleep(15000);
 		}
 		
-		usleep(5000);
+		usleep(3000);
 		
 		if (leftSideOnLine) {
 			if (currentLeftPower > minPower) {
