@@ -6,14 +6,9 @@
 #include <vector> //for using vectors
 using namespace std;
 
-BrickPi3 BP;
-
-
-void exit_signal_handler(int signo);
-
+Arnold arnold;
 
 vector <int> calibrar() {
-    Arnold arnold;
     
     string ready;
     cout << "Place linebot on position with straight line (make sure both Black/White sensors are on white)" << endl;
@@ -96,9 +91,6 @@ vector <int> calibrar() {
 
 
 int main(){
-	signal(SIGINT, exit_signal_handler); //exit function for ctrl c
-	
-	BP.detect(); //make sure Pi is communicating and up to date
 	
 	int error;
     string cont;
@@ -124,14 +116,4 @@ int main(){
     
     
  }
-
-
-
-//Signal handler when Ctrl-C is pressed, makes sure nothing stays running
-void exit_signal_handler(int signo){
-	if(signo == SIGINT){
-		BP.reset_all();
-		exit(-2);
-	}
-}
 
