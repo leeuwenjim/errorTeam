@@ -11,11 +11,6 @@ BrickPi3 BP;
 
 void exit_signal_handler(int signo);
 
-void movement(uint8_t powerleft, uint8_t powerright){
-    // Move Arnold forward
-    BP.set_motor_power(motorleft, powerleft);
-    BP.set_motor_power(motorright, powerright);
-}
 
 vector <int> calibrar() {
     Arnold arnold;
