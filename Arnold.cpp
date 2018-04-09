@@ -5,6 +5,8 @@
 #include <iomanip> //for setw and setprecision
 #include <unistd.h> //for sleep
 
+using namespace std;
+
 BrickPi3 BP;
 void exit_signal_handler(int signo);
 
@@ -33,8 +35,8 @@ int Arnold::getUltrasonic() {
 }
 
 void Arnold::move(uint8_t powerLeft, uint8_t powerRight) {
-    BP.set_motor_power(Arnold::motorleft, powerleft);
-    BP.set_motor_power(Arnold::motorright, powerright);	
+    BP.set_motor_power(Arnold::motorleft, powerLeft);
+    BP.set_motor_power(Arnold::motorright, powerRight);	
 }
 
 int Arnold::getLeftBW() {
@@ -56,7 +58,7 @@ int Arnold::getRightBW() {
 	else{
 		cout << "Right sees black" << endl;
 	}
-	return BlacknWhiterechts.reflected;
+	return Blacknwhiterechts.reflected;
 }
 
 void exit_signal_handler(int signo) {
