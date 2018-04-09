@@ -159,21 +159,21 @@ void Arnold::lineFollowAlgoritm() {
 	usleep(1000);
 	
 	if (leftSideOnLine) {
-		if (this->currentLeftPower > this->minPower) {
+		if (this->currentLeftPower > this->minLineFollowPower) {
 			this->currentLeftPower--;
 		}
 	} else {
-		if (this->currentLeftPower < this->maxPower) {
+		if (this->currentLeftPower < this->maxLineFollowPower) {
 			this->currentLeftPower++;
 		}
 	}
 	
 	if (rightSideOnLine) {
-		if (this->currentRightPower > this->minPower) {
+		if (this->currentRightPower > this->minLineFollowPower) {
 			this->currentRightPower--;
 		}
 	} else {
-		if (this->currentRightPower < this->maxPower) {
+		if (this->currentRightPower < this->maxLineFollowPower) {
 			this->currentRightPower++;
 		}
 	}
