@@ -1,5 +1,6 @@
 #include "Arnold.h"
 #include <iostream>
+#include <unistd.h>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int main() {
 	int increments = 1;
 	
 	while(true) {
+		usleep(100);
 		bool leftSideOnLine = arnold.leftSideOnLine();
 		bool rightSideOnLine = arnold.rightSideOnLine();
 		
