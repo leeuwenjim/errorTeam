@@ -6,4 +6,8 @@ int main() {
 
 	arnold.calibrate();
 	
+	while(true) {
+		cout << arnold.leftSideOnLine()	<< endl;
+	}
+	
 }

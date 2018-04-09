@@ -123,6 +123,26 @@ void Arnold::calibrate() {
 	
 }
 
+bool Arnold::leftSideOnLine() {
+	uint16_t currentValueLeft = this->getLeftBW();
+	if (currentValueLeft - this->BWMargin > this->getLeftWhiteValue() || currentValueLeft + this->BWMargin < this->getLeftWhiteValue()) {
+		return true;
+	} 
+	return false;
+}
+
+bool Arnold::rightSideOnLine() {
+	uint16_t currentValueRight = this->getRightBW();
+	if (currentValueRight - this->BWMargin > this->getRightWhiteValue() || currentValueRight + this->BWMargin < this->getRightWhiteValue()) {
+		return true;
+	} 
+	return false;
+}
+
+int Arnold::setBWMargin(uint16_t margin) {
+	this->BWMargin = margin;
+}
+
 void exit_signal_handler(int signo) {
 	if (signo == SIGINT) {
 		BP.reset_all();

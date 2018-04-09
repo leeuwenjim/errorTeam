@@ -13,6 +13,7 @@ private:
 	uint8_t ultrasonic;
 	int leftWhiteValue;
 	int rightWhiteValue;
+	int BWMargin = 150;
 public:
 	Arnold();
 	void move(uint16_t powerLeft, uint16_t powerRight);
@@ -24,6 +25,9 @@ public:
 	int getLeftWhiteValue();
 	int getRightWhiteValue();
 	void calibrate();
+	bool leftSideOnLine();
+	bool rightSideOnLine();
+	int setBWMargin(uint16_t margin);
 };
 
 #endif
