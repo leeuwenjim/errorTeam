@@ -56,7 +56,7 @@ int Arnold::getRightBW() {
 	else{
 		cout << "Right sees black" << endl;
 	}
-	return BlacknWhiterechts.reflected;
+	return Blacknwhiterechts.reflected;
 }
 
 void exit_signal_handler(int signo) {
