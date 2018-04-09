@@ -35,8 +35,8 @@ int Arnold::getUltrasonic() {
 }
 
 void Arnold::move(uint8_t powerLeft, uint8_t powerRight) {
-    BP.set_motor_power(Arnold::motorleft, powerleft);
-    BP.set_motor_power(Arnold::motorright, powerright);	
+    BP.set_motor_power(Arnold::motorleft, powerLeft);
+    BP.set_motor_power(Arnold::motorright, powerRight);	
 }
 
 int Arnold::getLeftBW() {
