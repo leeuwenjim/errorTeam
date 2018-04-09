@@ -1,4 +1,7 @@
 #include "Arnold.h"
+#include <iostream>
+
+using namespace std;
 
 Arnold arnold;
 
