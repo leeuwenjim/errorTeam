@@ -276,7 +276,7 @@ void Arnold::goAroundObstacle() {
     while(cont){
         if(getUltrasonic() > 15) {
         cout << this->getUltrasonic();
-            sleep(5);
+            usleep(3500000);
             this->stop();
             cont=false;
             }
@@ -287,7 +287,7 @@ void Arnold::goAroundObstacle() {
     while(cont){
         if(this->getUltrasonic() > 10) {
         cout << this->getUltrasonic();
-            sleep(5);
+            usleep(3500000);
             this->stop();
             cont= false;
         }
@@ -299,6 +299,7 @@ void Arnold::goAroundObstacle() {
             this->stop();
             sleep(1);
             this->crossNavigator(2);
+	    this->turn_ultrasonic(2);
             break;
             }
     }
