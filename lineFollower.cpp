@@ -11,12 +11,12 @@ int main() {
 	arnold.calibrate();
 	
 	while(true) {
-		//if (arnold.seesomething) {
-				//arnold.goAroundObstacle
-				//get back on line
-		//} else 
+		if (arnold.getUltrasonic < 10) {
+			arnold.goAroundObstacle
+				
+		} else 
 			arnold.lineFollowAlgoritm();
-		//}
+		}
 	}
 	
 }
