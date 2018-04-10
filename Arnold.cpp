@@ -295,7 +295,7 @@ void Arnold::goAroundObstacle() {
     this->move(40,40);
     bool once = false;
     while (true) {
-		if (leftSideOnLine() && arnold.rightSideOnLine()) {
+		if (leftSideOnLine() && rightSideOnLine()) {
 			this->stop();
 			if (once) {
 				this->crossNavigator(0);
