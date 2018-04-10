@@ -11,7 +11,7 @@ int main() {
 	arnold.calibrate();
 	
 	while(true) {
-		if (arnold.getUltrasonic < 10) {
+		if (arnold.getUltrasonic() < 10) {
 			arnold.goAroundObstacle();
 				
 		} 
