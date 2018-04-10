@@ -182,6 +182,27 @@ void Arnold::lineFollowAlgoritm() {
 		
 }
 
+void Arnold::crossNavigator(int direction) {
+	if (direction == 0) { //turn left
+		this->move(40, 40);
+		usleep(500000);
+		this->stop();
+		this->move(-40, 40);
+		usleep(1082430);
+		this->stop();
+		return;
+	}
+	if (direction == 1) { //go streaght ahead
+		this->move(40, 40);
+		usleep(1000000);
+		this->stop();
+		return;
+	}
+	if (direction == 2) { // go right
+		
+	}
+}
+
 void exit_signal_handler(int signo) {
 	if (signo == SIGINT) {
 		BP.reset_all();

@@ -33,6 +33,7 @@ public:
 	bool rightSideOnLine();
 	int setBWMargin(uint16_t margin);
 	void lineFollowAlgoritm();
+	void crossNavigator(int direction);
 };
 
 #endif
