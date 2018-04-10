@@ -282,7 +282,7 @@ void Arnold::goAroundObstacle() {
     }
     this->turn(1);
     this->move(20,20);
-    usleep(3500000);	
+    usleep(2500000);	
     cont = true;
     while(cont){
         if(this->getUltrasonic() > 10) {
