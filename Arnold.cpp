@@ -40,6 +40,7 @@ Arnold::Arnold() {
 int Arnold::getUltrasonic() {
 	sensor_ultrasonic_t Ultrasonic;
 	BP.get_sensor(Arnold::ultrasonic, Ultrasonic);
+	cout << Ultrasonic.cm << " cm" <<endl;
 	return Ultrasonic.cm;
 }
 
