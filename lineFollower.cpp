@@ -13,9 +13,11 @@ int main() {
 	while(true) {
 		if (arnold.getUltrasonic() < 10) {
 			arnold.goAroundObstacle();
+            cout << "eind object ontwijken" << endl;
 				
 		} 
 		else{ 
+            cout << "begin lijnvolg" << endl;
 			arnold.lineFollowAlgoritm();
 		}
 		
