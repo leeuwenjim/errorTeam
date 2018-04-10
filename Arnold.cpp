@@ -300,7 +300,8 @@ void Arnold::goAroundObstacle() {
             this->crossNavigator(2);
             break;
             }
-    }  
+    }
+}
 
 
 ///
