@@ -11,7 +11,12 @@ int main() {
 	arnold.calibrate();
 	
 	while(true) {
-		arnold.lineFollowAlgoritm();
+		//if (arnold.seesomething) {
+				//arnold.goAroundObstacle
+				//get back on line
+		//} else 
+			arnold.lineFollowAlgoritm();
+		//}
 	}
 	
 }
