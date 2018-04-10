@@ -35,6 +35,7 @@ public:
 	void lineFollowAlgoritm();
 	void crossNavigator(int direction);
 	void turn(int side);
+	void goAroundObstacle();
 };
 
 #endif
