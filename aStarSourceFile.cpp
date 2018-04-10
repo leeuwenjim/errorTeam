@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "aStarSourceFile.h"
 using namespace std;
 

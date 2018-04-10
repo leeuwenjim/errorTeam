@@ -1,5 +1,6 @@
 #ifndef aStarSourceFile_h_
 #define aStarSourceFile_h_
+#include <algorithm>
 
 // Coordinate struct to store XY coordinates.
 struct Coordinate{
@@ -168,7 +169,7 @@ std::vector<Coordinate> aStar(Node _currentNode, Node _grid[xSize][ySize], Node 
     }
     counter = 0;
     
-    // The while(true) loop below constructs the route/path from the destination Node to the origin Node
+    // The while(true) loop below constructs the route/path from the origin Node to the destination Node
     while(true){
         counter++;
         if(counter > 25){
@@ -185,6 +186,7 @@ std::vector<Coordinate> aStar(Node _currentNode, Node _grid[xSize][ySize], Node 
         currentNode = _grid[currentNode.parentCoordinate.x][currentNode.parentCoordinate.y];
     }
     
+    std::reverse(returnVector.begin(),returnVector.end());
     return returnVector;
 }
 
