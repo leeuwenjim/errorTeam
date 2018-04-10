@@ -70,7 +70,7 @@ void Arnold::stop()
 /// turn_ultrasonic(int position);
 ///		position: tells the function to turn the ultrasonic to the left or right with 90 degrees
 /// 
-/// turns the 
+/// turns the head to the left is position is 1, and to the right if position is 2
 ///
 void Arnold::turn_ultrasonic(int position){
 	if(position ==1){
@@ -86,27 +86,51 @@ void Arnold::turn_ultrasonic(int position){
 	}	
 }
 
+///
+/// getLeftBW()
+/// 
+/// Returns the reflection value the left reflection sensor mesures
+/// 
 int Arnold::getLeftBW() {
 	sensor_light_t Blacknwhitelinks;
 	BP.get_sensor(Arnold::BWsensorleft, Blacknwhitelinks);
 	return Blacknwhitelinks.reflected;
 }
 
+///
+/// getRightBW()
+/// 
+/// Returns the reflection value the right reflection sensor mesures
+///
 int Arnold::getRightBW() {
 	sensor_light_t Blacknwhiterechts;
 	BP.get_sensor(Arnold::BWsensorright, Blacknwhiterechts);
 	return Blacknwhiterechts.reflected;
 }
 
-
+///
+/// getLeftWhiteValue()
+/// 
+/// gets left white value that was set during calibration
+///
 int Arnold::getLeftWhiteValue() {
 	return leftWhiteValue;
 }
 
+///
+/// getRightWhiteValue()
+/// 
+/// gets right white value that was set during calibration
+///
 int Arnold::getRightWhiteValue() {
 	return rightWhiteValue;
 }
 
+///
+/// calibrate()
+/// 
+/// This function calibrates arnold by mesuring the reflection on the left and right sensor on two spots. The average of the mesurements is stored int the leftWhiteValue and rightWhiteValue
+/// 
 void Arnold::calibrate() {
 	string ready;
     cout << "Place linebot on position with straight line (make sure both Black/White sensors are on white)" << endl;
@@ -119,7 +143,6 @@ void Arnold::calibrate() {
     uint16_t leftwhite1 = this->getLeftBW();
     uint16_t rightwhite1 = this->getRightBW();
 	
-    /// move forward for calibration
 	this->move(30,30);
 	usleep(1000000);
 	this->stop();
@@ -133,12 +156,13 @@ void Arnold::calibrate() {
 	cout << "White left: " << this->getLeftWhiteValue() << endl;
 	cout << "White right: " << this->getRightWhiteValue() << endl;
 	
-    /// move backwards to start position
-    this->move(-30,-30);
-    usleep(1000000);
-    this->stop();
 }
 
+///
+/// leftSideOnLine()
+///
+/// returns if the left side sensor is mesuring something else than white
+///
 bool Arnold::leftSideOnLine() {
 	uint16_t currentValueLeft = this->getLeftBW();
 	if (currentValueLeft - this->BWMargin > this->getLeftWhiteValue() || currentValueLeft + this->BWMargin < this->getLeftWhiteValue()) {
@@ -147,6 +171,11 @@ bool Arnold::leftSideOnLine() {
 	return false;
 }
 
+///
+/// rightSideOnLine()
+///
+/// returns if the right side sensor is mesuring something else than white
+///
 bool Arnold::rightSideOnLine() {
 	uint16_t currentValueRight = this->getRightBW();
 	if (currentValueRight - this->BWMargin > this->getRightWhiteValue() || currentValueRight + this->BWMargin < this->getRightWhiteValue()) {
@@ -155,10 +184,21 @@ bool Arnold::rightSideOnLine() {
 	return false;
 }
 
+///
+/// setBWMargin(uint16_t margin)
+/// 	margin: the new margin
+///
+/// sets the margin that will be used in depending if the sensor is mesuring white or not. Can be seen as a sensitivity setting
+///
 int Arnold::setBWMargin(uint16_t margin) {
 	this->BWMargin = margin;
 }
 
+///
+/// lineFollowAlgoritm()
+///
+/// This algoritm will follow the line by incrementing and decrementing the speed of the motors. 
+///
 void Arnold::lineFollowAlgoritm() {
 	bool leftSideOnLine = this->leftSideOnLine();
 	bool rightSideOnLine = this->rightSideOnLine();
@@ -193,6 +233,12 @@ void Arnold::lineFollowAlgoritm() {
 		
 }
 
+///
+/// crossNavigator(int direction)
+///		direction: the direction arnold has to travel on calling this function. 0 for left, 1 for straight, 2 for right turn
+///
+///	will move arnold at a crosspoint. This function doesn't detect crosspoints, only moves arnold when called. Normal usage is when a crossing is detected, this function is called to direct arnold where to go
+///
 void Arnold::crossNavigator(int direction) {
 	if (direction == 0) { //turn left
 		this->move(40, 40);
@@ -201,7 +247,7 @@ void Arnold::crossNavigator(int direction) {
 		this->turn(1);
 		return;
 	}
-	if (direction == 1) { //go streaght ahead
+	if (direction == 1) { //go straight ahead
 		this->move(40, 40);
 		usleep(500000);
 		this->stop();
@@ -216,23 +262,11 @@ void Arnold::crossNavigator(int direction) {
 	}
 }
 
-void Arnold::turn(int side){
-    
-    ///one is left
-    if(side==1){
-        move(-40, 40);
-        usleep(1082430);
-        stop();
-    }
-    ///two is right
-    if(side==2){ 
-        move(40, -40);
-        usleep(1082430);
-        stop();
-    }
-}
-
-///passes a obstacle based on ultrasonic, always passes right
+///
+/// goAroundObstacle()
+///
+/// passes a obstacle based on ultrasonic, always passes right
+///
 void Arnold::goAroundObstacle() {
     turn(2);
     turn_ultrasonic(1);
@@ -260,11 +294,41 @@ void Arnold::goAroundObstacle() {
     }
 }
 
+///
+/// turn(int side)
+///		side: indicates which side arnold will turn to
+///
+/// this function turns arnold 90 degrees to the left(side = 1) or right(side = 2)
+///
+void Arnold::turn(int side){
+    
+    ///one is left
+    if(side==1){
+        move(-40, 40);
+        usleep(1082430);
+        stop();
+    }
+    ///two is right
+    if(side==2){ 
+        move(40, -40);
+        usleep(1082430);
+        stop();
+    }
+}
+
+/// 
+/// exit_signal_handler(int signo)
+///
+/// exit handler (cntrl-c)
+///
 void exit_signal_handler(int signo) {
 	if (signo == SIGINT) {
 		BP.reset_all();
 		exit(-1);
 	}
 }
+
+
+
 
 
