@@ -288,27 +288,28 @@ void Arnold::goAroundObstacle() {
         cout << this->getUltrasonic();
             sleep(1);
             this->stop();
-            cont= false
+            cont= false;
         }
     }
     this->turn(1);
     this->move(40,40);
+    bool once = false;
     while (true) {
-		if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
-			arnold.stop();
+		if (leftSideOnLine() && arnold.rightSideOnLine()) {
+			this->stop();
 			if (once) {
-				arnold.crossNavigator(0);
+				this->crossNavigator(0);
 				break;
 			} else {
-				arnold.crossNavigator(1);
+				this->crossNavigator(1);
 				once = true;
 			}
 		} else {
-			arnold.move(20, 20);
+			this->move(20, 20);
 		}
     }
-    }
 }
+
 
 ///
 /// turn(int side)
