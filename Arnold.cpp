@@ -232,6 +232,34 @@ void Arnold::turn(int side){
     }
 }
 
+///passes a obstacle based on ultrasonic, always passes right
+void Arnold::goAroundObstacle() {
+    turn(2);
+    turn_ultrasonic(1);
+    move(40,40);
+    if(getUltrasonic() > 15) {
+        sleep(1);
+        stop();
+    }
+    turn(1);
+    move(40,40);
+    if(getUltrasonic() > 10) {
+        sleep(1);
+        stop();
+    }
+    turn(1);
+    move(40,40);
+    while(true) {
+        if (leftSideOnLine() && rightSideOnLine()) {
+            stop();
+            crossNavigator(2);
+            break;
+        } else {
+            move(20, 20);
+        }
+    }
+}
+
 void exit_signal_handler(int signo) {
 	if (signo == SIGINT) {
 		BP.reset_all();
