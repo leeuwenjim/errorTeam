@@ -293,22 +293,14 @@ void Arnold::goAroundObstacle() {
     }
     this->turn(1);
     this->move(40,40);
-    bool once = false;
-    while (true) {
-		if (leftSideOnLine() && rightSideOnLine()) {
-			this->stop();
-			if (once) {
-				this->crossNavigator(0);
-				break;
-			} else {
-				this->crossNavigator(1);
-				once = true;
-			}
-		} else {
-			this->move(20, 20);
-		}
-    }
-}
+    while(true){
+        if(this->getLeftWhiteValue()>1900 && this->getRightWhiteValue() >1900){
+            this->stop();
+            sleep(1);
+            this->crossNavigator(2);
+            break;
+            }
+    }  
 
 
 ///
