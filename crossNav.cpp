@@ -1,12 +1,12 @@
 #include "Arnold.h"
-#include <iosteam>
+#include <iostream>
 
 using namespace std;
 
 Arnold arnold;
 
 int main() {
-	
+	arnold.calibrate();
 	while (true) {
 		if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
 			arnold.stop();
