@@ -14,10 +14,10 @@ int main() {
 	arnold.calibrate();
 	while (true) {
 		if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
-			arnold.crossNavigator(directions[i]);
-			++i;
-			if (i > 11) {
-				i = 0;
+			arnold.crossNavigator(directions[index]);
+			++index;
+			if (index > 11) {
+				index = 0;
 			}
 		} else {
 			arnold.lineFollowAlgoritm();
