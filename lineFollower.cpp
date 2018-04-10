@@ -15,9 +15,9 @@ int main() {
 			arnold.goAroundObstacle();
 				
 		} 
-		else{ 
-			arnold.lineFollowAlgoritm();
-		}
+		
+		arnold.lineFollowAlgoritm();
+		
 	}
 	
 }
