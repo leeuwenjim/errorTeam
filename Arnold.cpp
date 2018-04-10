@@ -272,12 +272,14 @@ void Arnold::goAroundObstacle() {
     turn_ultrasonic(1);
     move(40,40);
     if(getUltrasonic() > 15) {
+	cout << getUltrasonic();
         sleep(1);
         stop();
     }
     turn(1);
     move(40,40);
     if(getUltrasonic() > 10) {
+	cout << getUltrasonic();
         sleep(1);
         stop();
     }
