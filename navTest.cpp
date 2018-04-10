@@ -16,7 +16,9 @@ int main() {
 		if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
 			arnold.crossNavigator(directions[i]);
 			++i;
-			i %= 12;
+			if (i > 11) {
+				i = 0;
+			}
 		} else {
 			arnold.lineFollowAlgoritm();
 		}
