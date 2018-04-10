@@ -275,18 +275,18 @@ void Arnold::goAroundObstacle() {
     this->move(20,20);
     while(cont){
         if(getUltrasonic() > 15) {
-            usleep(3500000);///After first turn drive 3.5 seconds after ultrasone
+            usleep(4000000);///After first turn drive 4 seconds after ultrasone
             this->stop();
             cont=false;
             }
     }
     this->turn(1);
     this->move(20,20);
-    usleep(2500000);///After second turn drive 2.5 seconds after ultrasone	
+    usleep(3000000);///After second turn drive 3 seconds after ultrasone	
     cont = true;
     while(cont){
         if(this->getUltrasonic() > 10) {
-            usleep(3500000);
+            usleep(4000000);
             this->stop();
             cont= false;
         }
