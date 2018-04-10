@@ -9,6 +9,7 @@ int main() {
 	while(true) {
 		arnold.turn(1);
 		arnold.turn(2);
+		arnold.turn(2);
 
 		
 		
