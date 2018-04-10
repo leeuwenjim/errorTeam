@@ -268,30 +268,30 @@ void Arnold::crossNavigator(int direction) {
 /// passes a obstacle based on ultrasonic, always passes right
 ///
 void Arnold::goAroundObstacle() {
-    turn(2);
-    turn_ultrasonic(1);
-    move(40,40);
+    this->turn(2);
+    this->turn_ultrasonic(1);
+    this->move(40,40);
     if(getUltrasonic() > 15) {
-	cout << getUltrasonic();
+	cout << this->getUltrasonic();
         sleep(1);
-        stop();
+        this->stop();
     }
-    turn(1);
-    move(40,40);
-    if(getUltrasonic() > 10) {
-	cout << getUltrasonic();
+    this->turn(1);
+    this->move(40,40);
+    if(this->getUltrasonic() > 10) {
+	cout << this->getUltrasonic();
         sleep(1);
-        stop();
+        this->stop();
     }
-    turn(1);
-    move(40,40);
+    this->turn(1);
+    this->move(40,40);
     while(true) {
-        if (leftSideOnLine() && rightSideOnLine()) {
-            stop();
-            crossNavigator(2);
+        if (this->leftSideOnLine() && this->rightSideOnLine()) {
+            this->stop();
+            this->crossNavigator(2);
             break;
         } else {
-            move(20, 20);
+            this->move(20, 20);
         }
     }
 }
