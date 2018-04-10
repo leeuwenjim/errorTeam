@@ -94,7 +94,7 @@ int Arnold::getLeftBW() {
 
 int Arnold::getRightBW() {
 	sensor_light_t Blacknwhiterechts;
-	BP.get_sensor(Arnold::BWsensorright, Blacknwhiterechts) == 0);
+	BP.get_sensor(Arnold::BWsensorright, Blacknwhiterechts);
 	return Blacknwhiterechts.reflected;
 }
 
