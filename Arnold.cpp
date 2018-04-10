@@ -214,6 +214,21 @@ void Arnold::crossNavigator(int direction) {
 		return;
 	}
 }
+void Arnold::turn(int side){
+    
+    ///one is left
+    if(side==1){
+        move(-40, 40);
+        usleep(1082430);
+        stop();
+    }
+    ///two is right
+    if(side==2){ 
+        move(40, -40);
+        usleep(1082430);
+        stop();
+    }
+}
 
 void exit_signal_handler(int signo) {
 	if (signo == SIGINT) {
