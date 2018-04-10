@@ -7,9 +7,8 @@ int main() {
 	Arnold arnold;
 	
 	while(true) {
-		arnold.getUltrasonic();
-		arnold.getLeftBW();
-		arnold.getRightBW();
+		arnold.turn(1);
+		arnold.turn(2);
 
 		
 		
