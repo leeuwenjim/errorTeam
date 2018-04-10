@@ -119,6 +119,7 @@ void Arnold::calibrate() {
     uint16_t leftwhite1 = this->getLeftBW();
     uint16_t rightwhite1 = this->getRightBW();
 	
+    /// move forward for calibration
 	this->move(30,30);
 	usleep(1000000);
 	this->stop();
@@ -132,6 +133,10 @@ void Arnold::calibrate() {
 	cout << "White left: " << this->getLeftWhiteValue() << endl;
 	cout << "White right: " << this->getRightWhiteValue() << endl;
 	
+    /// move backwards to start position
+    this->move(-30,-30);
+    usleep(1000000);
+    this->stop();
 }
 
 bool Arnold::leftSideOnLine() {
