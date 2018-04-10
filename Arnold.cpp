@@ -194,7 +194,7 @@ void Arnold::crossNavigator(int direction) {
 	}
 	if (direction == 1) { //go streaght ahead
 		this->move(40, 40);
-		usleep(1000000);
+		usleep(500000);
 		this->stop();
 		return;
 	}

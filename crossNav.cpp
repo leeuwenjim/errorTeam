@@ -10,7 +10,7 @@ int main() {
 	while (true) {
 		if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
 			arnold.stop();
-			arnold.crossNavigator(1);
+			arnold.crossNavigator(0);
 			break;
 		} else {
 			arnold.move(20, 20);
