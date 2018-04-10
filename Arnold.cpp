@@ -306,13 +306,13 @@ void Arnold::turn(int side){
     
     ///one is left
     if(side==1){
-        move(-40, 40);
+        move(-50, 50);
         usleep(1082430);
         stop();
     }
     ///two is right
     if(side==2){ 
-        move(40, -40);
+        move(50, -50);
         usleep(1082430);
         stop();
     }
