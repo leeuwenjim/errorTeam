@@ -114,7 +114,7 @@ void Arnold::calibrate() {
     uint16_t rightwhite1 = this->getRightBW();
 	
 	this->move(30,30);
-	usleep(2000000);
+	usleep(1000000);
 	this->stop();
 	
 	uint16_t leftwhite2 = this->getLeftBW();
