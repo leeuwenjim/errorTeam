@@ -231,7 +231,7 @@ void Arnold::turn(int side){
         stop();
     }
 }
-
+///passes a obstacle based on ultrasonic, always passes right
 void Arnold::goAroundObstacle() {
     turn(2);
     turn_ultrasonic(1);
