@@ -12,9 +12,10 @@ int main() {
 	
 	while(true) {
 		if (arnold.getUltrasonic < 10) {
-			arnold.goAroundObstacle
+			arnold.goAroundObstacle();
 				
-		} else 
+		} 
+		else{ 
 			arnold.lineFollowAlgoritm();
 		}
 	}
