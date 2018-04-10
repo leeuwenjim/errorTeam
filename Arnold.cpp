@@ -11,7 +11,11 @@ BrickPi3 BP;
 void exit_signal_handler(int signo);
 
 
-
+///
+/// Constructor Arnold class
+///
+/// This constructor will initialize the sensor and motor ports, init the BrickPi3 and set te sensor types
+///
 Arnold::Arnold() {
 	signal(SIGINT, exit_signal_handler);
 	BP.detect();
@@ -28,27 +32,47 @@ Arnold::Arnold() {
 	BP.set_sensor_type(Arnold::ultrasonic, SENSOR_TYPE_NXT_ULTRASONIC);
 }
 
+///
+/// getUltrasonic()
+///
+/// Returns the distance in centimeters that the ultrasonic sensor mesures
+///
 int Arnold::getUltrasonic() {
 	sensor_ultrasonic_t Ultrasonic;
 	BP.get_sensor(Arnold::ultrasonic, Ultrasonic);
-	//if(BP.get_sensor(Arnold::ultrasonic, Ultrasonic) == 0){
-	//		cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-	//}
 	return Ultrasonic.cm;
 }
 
+///
+/// move(uint16_t powerLeft, uint16_t powerRight)
+/// 	powerLeft: speed the left motor has to rotate
+/// 	powerRight: speed the right motor has to rotate
+///
+/// this function will move arnolds base motors with the given speed
+///
 void Arnold::move(uint16_t powerLeft, uint16_t powerRight) {
-    //BP.set_motor_power(Arnold::motorleft, powerLeft);
-    //BP.set_motor_power(Arnold::motorright, powerRight);
-	
 	BP.set_motor_power(Arnold::motorleft, powerLeft);
 	BP.set_motor_power(Arnold::motorright, powerRight);
-	//this->currentLeftPower = powerLeft;
-	//this->currentRightPower = powerRight;
 }
 
-void Arnold::turn_ultrasonic(int position){
+///
+/// stop()
+///
+/// this function will stop the motors on arnolds base.
+///
+void Arnold::stop()
+{
+	 BP.set_motor_power(Arnold::motorleft, 0);
+	 BP.set_motor_power(Arnold::motorright, 0);
+}
 
+///
+/// turn_ultrasonic(int position);
+///		position: tells the function to turn the ultrasonic to the left or right with 90 degrees
+/// 
+/// turns the 
+///
+void Arnold::turn_ultrasonic(int position){
 	if(position ==1){
 		BP.set_motor_dps(Arnold::motortop ,90);
 		sleep(1);
@@ -62,33 +86,15 @@ void Arnold::turn_ultrasonic(int position){
 	}	
 }
 
-void Arnold::stop(void)
-{
-	 BP.set_motor_power(Arnold::motorleft, 0);
-	 BP.set_motor_power(Arnold::motorright, 0);
-	 //this->currentLeftPower = 0;
-	 //this->currentRightPower = 0;
-}
-
 int Arnold::getLeftBW() {
 	sensor_light_t Blacknwhitelinks;
-	if(BP.get_sensor(Arnold::BWsensorleft, Blacknwhitelinks) == 0){
-		//cout << "Left sees " << Blacknwhitelinks.reflected << endl;
-	}
-	else{
-		//cout << "Left sees black" << endl;
-	}
+	BP.get_sensor(Arnold::BWsensorleft, Blacknwhitelinks);
 	return Blacknwhitelinks.reflected;
 }
 
 int Arnold::getRightBW() {
 	sensor_light_t Blacknwhiterechts;
-	if(BP.get_sensor(Arnold::BWsensorright, Blacknwhiterechts) == 0){
-		//cout << "Right sees " << Blacknwhiterechts.reflected << endl;
-	}
-	else{
-		//cout << "Right sees black" << endl;
-	}
+	BP.get_sensor(Arnold::BWsensorright, Blacknwhiterechts) == 0);
 	return Blacknwhiterechts.reflected;
 }
 
@@ -184,7 +190,7 @@ void Arnold::lineFollowAlgoritm() {
 
 void Arnold::crossNavigator(int direction) {
 	if (direction == 0) { //turn left
-		this->move(40, 40);s
+		this->move(40, 40);
 		usleep(800000);
 		this->stop();
 		this->move(-40, 40);
