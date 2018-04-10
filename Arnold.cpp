@@ -272,7 +272,7 @@ void Arnold::goAroundObstacle() {
     bool cont = true;
     this->turn(2);
     this->turn_ultrasonic(1);
-    this->move(40,40);
+    this->move(20,20);
     while(cont){
         if(getUltrasonic() > 15) {
         cout << this->getUltrasonic();
@@ -282,7 +282,7 @@ void Arnold::goAroundObstacle() {
             }
     }
     this->turn(1);
-    this->move(40,40);
+    this->move(20,20);
     cont = true;
     while(cont){
         if(this->getUltrasonic() > 10) {
@@ -293,7 +293,7 @@ void Arnold::goAroundObstacle() {
         }
     }
     this->turn(1);
-    this->move(40,40);
+    this->move(20,20);
     while(true){
         if(this->getLeftWhiteValue()>1900 && this->getRightWhiteValue() >1900){
             this->stop();
