@@ -282,7 +282,7 @@ void Arnold::goAroundObstacle() {
     }
     this->turn(1);
     this->move(20,20);
-    usleep(3000000);///After second turn drive 3 seconds after ultrasone	
+    usleep(4500000);///After second turn drive 4.5 seconds after ultrasone	
     cont = true;
     while(cont){
         if(this->getUltrasonic() > 10) {
