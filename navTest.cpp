@@ -7,20 +7,18 @@ Arnold arnold;
 
 bool once = false;
 
+vector<int> directions = {1, 0, 0, 2, 2, 0, 0, 1, 0, 1, 1, 0};
+int index = 0;
+
 int main() {
 	arnold.calibrate();
 	while (true) {
 		if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
-			arnold.stop();
-			if (once) {
-				arnold.crossNavigator(0);
-				break;
-			} else {
-				arnold.crossNavigator(1);
-				once = true;
-			}
+			arnold.crossNavigator(directions[i]);
+			++i;
+			i %= 12;
 		} else {
-			arnold.move(20, 20);
+			arnold.lineFollowAlgoritm();
 		}
 	}
 	
