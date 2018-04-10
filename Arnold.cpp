@@ -184,7 +184,7 @@ void Arnold::lineFollowAlgoritm() {
 
 void Arnold::crossNavigator(int direction) {
 	if (direction == 0) { //turn left
-		this->move(40, 40);
+		this->move(40, 40);s
 		usleep(800000);
 		this->stop();
 		this->move(-40, 40);
@@ -199,7 +199,13 @@ void Arnold::crossNavigator(int direction) {
 		return;
 	}
 	if (direction == 2) { // go right
-		
+		this->move(40, 40);
+		usleep(800000);
+		this->stop();
+		this->move(40, -40);
+		usleep(1082430);
+		this->stop();
+		return;
 	}
 }
 
