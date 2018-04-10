@@ -193,9 +193,7 @@ void Arnold::crossNavigator(int direction) {
 		this->move(40, 40);
 		usleep(800000);
 		this->stop();
-		this->move(-40, 40);
-		usleep(1082430);
-		this->stop();
+		this->turn(1);
 		return;
 	}
 	if (direction == 1) { //go streaght ahead
@@ -208,12 +206,11 @@ void Arnold::crossNavigator(int direction) {
 		this->move(40, 40);
 		usleep(800000);
 		this->stop();
-		this->move(40, -40);
-		usleep(1082430);
-		this->stop();
+		this->turn(2);
 		return;
 	}
 }
+
 void Arnold::turn(int side){
     
     ///one is left

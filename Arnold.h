@@ -34,6 +34,7 @@ public:
 	int setBWMargin(uint16_t margin);
 	void lineFollowAlgoritm();
 	void crossNavigator(int direction);
+	void turn(int side);
 };
 
 #endif
