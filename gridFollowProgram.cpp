@@ -126,7 +126,6 @@ int main()
     cin >> directionArnold;
     
     route = aStar<5, 5>(originNode, grid, destinationNode);
-    turnValuesArnold = generateTurnValues(route, directionArnold);
     
     directionTargetStart = getDirection(coordinateArnold, route[0]);
     if(directionArnold != directionTargetStart){
@@ -158,6 +157,13 @@ int main()
             cout << "Error at turning to the first Node of path" << endl;
         }
     }
+    
+    turnValuesArnold = generateTurnValues(route, directionArnold);
+    cout << "TurnValues:" << endl;
+    for(unsigned int j=0; j<turnValuesArnold.size(); j++){
+        cout << turnValuesArnold[j] << ' ';
+    }
+    cout << endl;
     
     while(not (coordinateArnold == destinationNode.coordinate)){
         cout << "<<<<New iteration>>>>" << endl;
@@ -211,6 +217,8 @@ int main()
                 }else{
                     cout << "Error at turning to the first Node of path" << endl;
                 }
+                
+                turnValuesArnold = generateTurnValues(route, directionArnold);
             }
             continue;
         }else{
