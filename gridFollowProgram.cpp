@@ -228,6 +228,8 @@ int main()
             arnold.lineFollowAlgoritm();
         }
     }
+
+    arnold.stop();
     
 	return 0;
 }
