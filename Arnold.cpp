@@ -14,7 +14,7 @@ void exit_signal_handler(int signo);
 ///
 /// Constructor Arnold class
 ///
-/// This constructor will initialize the sensor and motor ports, init the BrickPi3 and set te sensor types
+/// This constructor will initialize the sensor and motor ports, init the BrickPi3 and set the sensor types
 ///
 Arnold::Arnold() {
 	signal(SIGINT, exit_signal_handler);
@@ -35,7 +35,7 @@ Arnold::Arnold() {
 ///
 /// getUltrasonic()
 ///
-/// Returns the distance in centimeters that the ultrasonic sensor mesures
+/// Returns the distance in centimeters that the ultrasonic sensor measures
 ///
 int Arnold::getUltrasonic() {
 	sensor_ultrasonic_t Ultrasonic;
@@ -59,7 +59,7 @@ void Arnold::move(uint16_t powerLeft, uint16_t powerRight) {
 ///
 /// stop()
 ///
-/// this function will stop the motors on arnolds base.
+/// this function will stop the motors to ensure no runaway motors.
 ///
 void Arnold::stop()
 {
@@ -90,7 +90,7 @@ void Arnold::turn_ultrasonic(int position){
 ///
 /// getLeftBW()
 /// 
-/// Returns the reflection value the left reflection sensor mesures
+/// Returns the reflection value the left reflection sensor measures
 /// 
 int Arnold::getLeftBW() {
 	sensor_light_t Blacknwhitelinks;
@@ -101,7 +101,7 @@ int Arnold::getLeftBW() {
 ///
 /// getRightBW()
 /// 
-/// Returns the reflection value the right reflection sensor mesures
+/// Returns the reflection value the right reflection sensor measures
 ///
 int Arnold::getRightBW() {
 	sensor_light_t Blacknwhiterechts;
@@ -130,7 +130,7 @@ int Arnold::getRightWhiteValue() {
 ///
 /// calibrate()
 /// 
-/// This function calibrates arnold by mesuring the reflection on the left and right sensor on two spots. The average of the mesurements is stored int the leftWhiteValue and rightWhiteValue
+/// This function calibrates arnold by measuring the reflection on the left and right sensor on two spots. The average of the measurements is stored int the leftWhiteValue and rightWhiteValue
 /// 
 void Arnold::calibrate() {
 	string ready;
@@ -162,7 +162,7 @@ void Arnold::calibrate() {
 ///
 /// leftSideOnLine()
 ///
-/// returns if the left side sensor is mesuring something else than white
+/// returns if the left side sensor is measuring something else than white
 ///
 bool Arnold::leftSideOnLine() {
 	uint16_t currentValueLeft = this->getLeftBW();
@@ -175,7 +175,7 @@ bool Arnold::leftSideOnLine() {
 ///
 /// rightSideOnLine()
 ///
-/// returns if the right side sensor is mesuring something else than white
+/// returns if the right side sensor is measuring something else than white
 ///
 bool Arnold::rightSideOnLine() {
 	uint16_t currentValueRight = this->getRightBW();
@@ -189,7 +189,7 @@ bool Arnold::rightSideOnLine() {
 /// setBWMargin(uint16_t margin)
 /// 	margin: the new margin
 ///
-/// sets the margin that will be used in depending if the sensor is mesuring white or not. Can be seen as a sensitivity setting
+/// sets the margin that will be used in depending if the sensor is measuring white or not. Can be seen as a sensitivity setting
 ///
 int Arnold::setBWMargin(uint16_t margin) {
 	this->BWMargin = margin;
@@ -241,27 +241,27 @@ void Arnold::lineFollowAlgoritm() {
 ///	will move arnold at a crosspoint. This function doesn't detect crosspoints, only moves arnold when called. Normal usage is when a crossing is detected, this function is called to direct arnold where to go
 ///
 void Arnold::crossNavigator(int direction) {
-	if (direction == 0) { //turn left
+	if (direction == 0) { ///turn left
 		this->move(40, 40);
 		usleep(800000);
 		this->stop();
 		this->turn(1);
 		return;
 	}
-	if (direction == 1) { //go straight ahead
+	if (direction == 1) { ///go straight ahead
 		this->move(40, 40);
 		usleep(500000);
 		this->stop();
 		return;
 	}
-	if (direction == 2) { // go right
+	if (direction == 2) { /// go right
 		this->move(40, 40);
 		usleep(800000);
 		this->stop();
 		this->turn(2);
 		return;
 	}
-	if (direction == 3) { // turn around
+	if (direction == 3) { /// turn around
 		this->turn(1);
 		this->turn(1);
 	}
@@ -279,14 +279,14 @@ void Arnold::goAroundObstacle() {
     this->move(20,20);
     while(cont){
         if(getUltrasonic() > 15) {
-            usleep(4000000);///After first turn drive 4 seconds after ultrasone
+            usleep(4000000);///After first turn drive 4 seconds after ultrasonic stops seeing object
             this->stop();
             cont=false;
             }
     }
     this->turn(1);
     this->move(20,20);
-    usleep(4500000);///After second turn drive 4.5 seconds after ultrasone	
+    usleep(4500000);///After second turn drive 4.5 seconds after ultrasonic stops seeing object	
     cont = true;
     while(cont){
         if(this->getUltrasonic() > 10) {
@@ -298,7 +298,7 @@ void Arnold::goAroundObstacle() {
     this->turn(1);
     this->turn_ultrasonic(2);	
     this->move(20,20);
-    while(true){
+    while(true){ ///Make sure Arnold gets back on line
         if(this->getLeftBW()>1900 && this->getRightBW() >1900){
             this->stop();
             sleep(1);
@@ -334,7 +334,7 @@ void Arnold::turn(int side){
 /// 
 /// exit_signal_handler(int signo)
 ///
-/// exit handler (cntrl-c)
+/// exit handler (ctrl-c)
 ///
 void exit_signal_handler(int signo) {
 	if (signo == SIGINT) {
