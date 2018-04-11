@@ -169,9 +169,9 @@ int main()
     cout << endl;
     
     while(not (coordinateArnold == destinationNode.coordinate)){
-        cout << "<<<<New iteration>>>>" << endl;
-        cout << "Current coordinate is: " << coordinateArnold.x << ' ' << coordinateArnold.y << endl;
-        cout << "Target coordinate is: " << route[nodeCounter].x << ' ' << route[nodeCounter].y << endl;
+        //cout << "<<<<New iteration>>>>" << endl;
+        //cout << "Current coordinate is: " << coordinateArnold.x << ' ' << coordinateArnold.y << endl;
+        //cout << "Target coordinate is: " << route[nodeCounter].x << ' ' << route[nodeCounter].y << endl;
         if(arnold.leftSideOnLine() && arnold.rightSideOnLine()){
             cout << "New Node reached!" << endl;
             coordinateArnold = route[nodeCounter];
