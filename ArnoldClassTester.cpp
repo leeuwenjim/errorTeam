@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include "Arnold.h"
 
+///This file is only used to test Arnold and is changed based on type of test
 int main() {
 
 	Arnold arnold;
