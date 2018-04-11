@@ -331,6 +331,24 @@ void Arnold::turn(int side){
     }
 }
 
+///
+/// turnDegrees(int degrees)
+///	degrees: amount of degrees that arnold will turn
+///
+/// This function will turn arnold by a given amount of degrees, positive for to the right, negative for to the left
+///
+void Arnold::turnDegrees(int degrees) {
+	if (degrees < 0) {
+		this->move(-50, 50);
+		usleep(12027*(degrees * -1));
+		this->stop();
+		return;
+	}
+	this->move(50, -50);
+	usleep(12027*degrees);
+	this->stop();
+}
+
 /// 
 /// exit_signal_handler(int signo)
 ///
