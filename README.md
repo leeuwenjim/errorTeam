@@ -12,7 +12,7 @@ Gebruikte onderdelen:
   
 Gebruikte stijlen:
 - Doxygen commenting
-  - // Voor main comments
+  - /// Voor main comments
   - /** Voor gedetaileerde uitleg */ 
 - camelCase voor functies, uitgezonderd exit signal handler ivm opvallendheid
 
