@@ -236,7 +236,7 @@ void Arnold::lineFollowAlgoritm() {
 
 ///
 /// crossNavigator(int direction)
-///		direction: the direction arnold has to travel on calling this function. 0 for left, 1 for straight, 2 for right turn
+///		direction: the direction arnold has to travel on calling this function. 0 for left, 1 for straight, 2 for right turn, 3 for 180 turn
 ///
 ///	will move arnold at a crosspoint. This function doesn't detect crosspoints, only moves arnold when called. Normal usage is when a crossing is detected, this function is called to direct arnold where to go
 ///
@@ -260,6 +260,10 @@ void Arnold::crossNavigator(int direction) {
 		this->stop();
 		this->turn(2);
 		return;
+	}
+	if (direction == 3) { // turn around
+		this->turn(1);
+		this->turn(1);
 	}
 }
 
