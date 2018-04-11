@@ -181,7 +181,7 @@ int main()
             arnold.crossNavigator(turnValuesArnold[nodeCounter]);
             directionArnold = getDirection(route[nodeCounter], route[nodeCounter + 1]);
             nodeCounter++;
-        }else if(arnold.getUltrasonic() <= minDistanceObstacles){
+        }else if(arnold.getUltrasonic() <= minDistanceObstacles && arnold.getUltrasonic() > 2){
             cout << "Obstacle detected!!" << endl;
             arnold.move(-standardPowerValue, -standardPowerValue);
             grid[route[nodeCounter].x][route[nodeCounter].y].blocked = true;
