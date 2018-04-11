@@ -274,7 +274,7 @@ void Arnold::crossNavigator(int direction) {
 ///
 void Arnold::goAroundObstacle() {
     bool cont = true;
-    this->turn(2);
+    this->turnDegrees(120);
     this->turn_ultrasonic(1);
     this->move(20,20);
     while(cont){
