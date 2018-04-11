@@ -33,7 +33,7 @@ public:
 	bool rightSideOnLine(); ///< check if right side is on the line
 	int setBWMargin(uint16_t margin); ///< set margin for line following
 	void lineFollowAlgoritm(); ///< line following function, only a single iteration
-	void crossNavigator(int direction); ///< turn left, right, or ahead on a crossing (doesn't detect crossings)
+	void crossNavigator(int direction); ///< turn left, right, goes ahead or turns around on a crossing (doesn't detect crossings)
 	void turn(int side); ///< turns arnold 90 degrees
 	void goAroundObstacle(); ///< function that goes around an obstacle, and gets back on the line
 };
