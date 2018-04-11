@@ -158,7 +158,7 @@ int main()
         }
     }
     
-    while(coordinateArnold != destinationNode.coordinate){
+    while(not (coordinateArnold == destinationNode.coordinate)){
         if(arnold.leftSideOnLine() && arnold.rightSideOnLine()){
             coordinateArnold = route[nodeCounter];
             if(coordinateArnold == destinationNode.coordinate){
