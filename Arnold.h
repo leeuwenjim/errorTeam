@@ -13,7 +13,7 @@ private:
 	uint8_t ultrasonic; ///< ultrasonic sensor port
 	int leftWhiteValue; ///< calibrated white value on the left side
 	int rightWhiteValue; ///< calibrated white value on the right side
-	int BWMargin = 50; ///< margin used during line following, can be seen as sensitivity
+	int BWMargin = 100; ///< margin used during line following, can be seen as sensitivity
 	int maxLineFollowPower = 40; ///< line follow maximum speed
 	int minLineFollowPower = -15; ///< line follow minimum speed
 	int currentLeftPower = 15; ///< power of the left motor during line following
