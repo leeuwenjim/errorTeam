@@ -130,6 +130,7 @@ int main()
     
     directionTargetStart = getDirection(coordinateArnold, route[0]);
     if(directionArnold != directionTargetStart){
+        cout << "Turning to the right direction" <<endl;
         tmp = directionsToTurnValue(directionArnold, directionTargetStart);
         if(tmp == 0){
             arnold.turn(1);
@@ -159,7 +160,11 @@ int main()
     }
     
     while(not (coordinateArnold == destinationNode.coordinate)){
+        cout << "<<<<New iteration>>>>" << endl;
+        cout << "Current coordinate is: " << coordinateArnold.x << ' ' << coordinateArnold.y << endl;
+        cout << "Target coordinate is: " << route[nodeCounter].x << ' ' << route[nodeCounter].y << endl;
         if(arnold.leftSideOnLine() && arnold.rightSideOnLine()){
+            cout << "New Node reached!" << endl;
             coordinateArnold = route[nodeCounter];
             if(coordinateArnold == destinationNode.coordinate){
                 break;
@@ -168,6 +173,7 @@ int main()
             directionArnold = getDirection(route[nodeCounter], route[nodeCounter + 1]);
             nodeCounter++;
         }else if(arnold.getUltrasonic() <= minDistanceObstacles){
+            cout << "Obstacle detected!!" << endl;
             arnold.move(-standardPowerValue, -standardPowerValue);
             grid[route[nodeCounter].x][route[nodeCounter].y].blocked = true;
             while(not(arnold.leftSideOnLine() && arnold.rightSideOnLine())){
@@ -178,6 +184,7 @@ int main()
             nodeCounter = 0;
             directionTargetStart = getDirection(coordinateArnold, route[0]);
             if(directionArnold != directionTargetStart){
+                cout << "Turning to the right direction" <<endl;
                 tmp = directionsToTurnValue(directionArnold, directionTargetStart);
                 if(tmp == 0){
                     arnold.turn(1);
