@@ -159,6 +159,7 @@ int main()
     }
     
     turnValuesArnold = generateTurnValues(route, directionArnold);
+    cout << directionArnold << endl;
     cout << "TurnValues:" << endl;
     for(unsigned int j=0; j<turnValuesArnold.size(); j++){
         cout << turnValuesArnold[j] << ' ';
