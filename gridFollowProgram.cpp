@@ -38,6 +38,7 @@ int getDirection(Coordinate currentCoordinate, Coordinate targetCoordinate){
     }else{
         cout << "Error at getDirection: currentNode IS the targetNode. currentNode = " << endl;
         cout << currentCoordinate.x << ' ' << currentCoordinate.y << endl;
+        return 1;
     }
 }
 
@@ -62,9 +63,9 @@ int directionsToTurnValue(const int & originDirection, const int & targetDirecti
         }
     }else{
         if(targetDirection == originDirection + 1){
-            return 0;
-        }else if(targetDirection == originDirection - 1){
             return 2;
+        }else if(targetDirection == originDirection - 1){
+            return 0;
         }else{
             return 3;
         }
@@ -102,17 +103,17 @@ int main()
         }
     }
     
-    cout << "Give the X starting coordinate: ";
+    cout << "Give the X starting coordinate: " << endl;
     cin >> userInputIntX;
-    cout << "Give the Y starting coordinate: ";
+    cout << "Give the Y starting coordinate: " << endl;
     cin >> userInputIntY;
     
     Node originNode = Node(false, userInputIntX, userInputIntY);
     coordinateArnold = originNode.coordinate;
     
-    cout << "Give the X destination coordinate: ";
+    cout << "Give the X destination coordinate: " << endl;
     cin >> userInputIntX;
-    cout << "Give the Y destination coordinate: ";
+    cout << "Give the Y destination coordinate: " << endl;
     cin >> userInputIntY;
     
     Node destinationNode = Node(false, userInputIntX, userInputIntY);
@@ -159,8 +160,11 @@ int main()
     
     while(coordinateArnold != destinationNode.coordinate){
         if(arnold.leftSideOnLine() && arnold.rightSideOnLine()){
-            arnold.crossNavigator(turnValuesArnold[nodeCounter]);
             coordinateArnold = route[nodeCounter];
+            if(coordinateArnold == destinationNode.coordinate){
+                break;
+            }
+            arnold.crossNavigator(turnValuesArnold[nodeCounter]);
             directionArnold = getDirection(route[nodeCounter], route[nodeCounter + 1]);
             nodeCounter++;
         }else if(arnold.getUltrasonic() <= minDistanceObstacles){
@@ -201,7 +205,7 @@ int main()
                     cout << "Error at turning to the first Node of path" << endl;
                 }
             }
-            continue
+            continue;
         }else{
             arnold.lineFollowAlgoritm();
         }
