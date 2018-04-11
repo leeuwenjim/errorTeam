@@ -31,6 +31,8 @@ int getDirection(Coordinate currentCoordinate, Coordinate targetCoordinate){
         }
     }else if(targetCoordinate.y != currentCoordinate.y){
         if(targetCoordinate.y - currentCoordinate.y > 0){
+            cout << "returning 4:" << endl;
+            cout << targetCoordinate.y << ' ' << currentCoordinate.y << endl;
             return 4;
         }else{
             return 2;
