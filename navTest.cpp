@@ -1,6 +1,7 @@
 #include "Arnold.h"
 #include <iostream>
 #include <vector>
+#include <unistd.h>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main() {
 	arnold.calibrate();
 	int index = 0;
 	while (true) {
-		if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
+		/*if (arnold.leftSideOnLine() && arnold.rightSideOnLine()) {
 			arnold.crossNavigator(directions[index]);
 			++index;
 			if (index > 11) {
@@ -22,7 +23,9 @@ int main() {
 			}
 		} else {
 			arnold.lineFollowAlgoritm();
-		}
+		}*/
+		arnold.crossNavigator(3);
+		usleep(3000000);
 	}
 	
 }
