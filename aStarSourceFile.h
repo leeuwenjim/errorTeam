@@ -4,8 +4,8 @@
 
 // Coordinate struct to store XY coordinates.
 struct Coordinate{
-    unsigned int x;
-    unsigned int y;
+    int x;
+    int y;
 };
 
 bool operator==(const Coordinate & lhs, const Coordinate & rhs);
