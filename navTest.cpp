@@ -24,12 +24,26 @@ int main() {
 		} else {
 			arnold.lineFollowAlgoritm();
 		}
+		*//*
 		arnold.crossNavigator(3);
 		usleep(3000000);
 		for(int i = 0; i < 1000; i++) {
 			arnold.lineFollowAlgoritm();
 		} */
-		arnold.lineFollowAlgoritm();
+		//arnold.lineFollowAlgoritm();
+		
+		arnold.turnDegrees(45);
+		usleep(1000000);
+		arnold.turnDegrees(90);
+		usleep(1000000);
+		arnold.turnDegrees(45);
+		usleep(1000000);
+		arnold.turnDegrees(-45);
+		usleep(1000000);
+		arnold.turnDegrees(-90);
+		usleep(1000000);
+		arnold.turnDegrees(-45);
+		usleep(1000000);
 	}
 	
 }
