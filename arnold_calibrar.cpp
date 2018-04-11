@@ -8,7 +8,7 @@ using namespace std;
 
 BrickPi3 BP;
 
-// give portnumbers
+/// gives portnumbers
 uint8_t motorleft = PORT_C;
 uint8_t motorright = PORT_B;
 uint16_t BWsensorleft = PORT_2;
@@ -19,12 +19,12 @@ uint8_t ultrasonic = PORT_3;
 void exit_signal_handler(int signo);
 
 void movement(uint8_t powerleft, uint8_t powerright){
-    // Move Arnold forward
+    /// Moves Arnold forward
     BP.set_motor_power(motorleft, powerleft);
     BP.set_motor_power(motorright, powerright);
 }
 
-vector <uint16_t> calibrar(){
+vector <uint16_t> calibrar(){ /// Starts actual calibration sequence
     string ready;
     cout << "Place linebot on position with straight line (make sure both Black/White sensors are on white)" << endl;
     cout << "Are you ready (yes?): " << endl;
@@ -53,7 +53,7 @@ vector <uint16_t> calibrar(){
     uint16_t leftblack1 = left.reflected;
     uin16_t rightblack1 = right.reflected;
 
-    //measure Black white sensor on spot one
+    /// measures Black white sensor on spot one
     movement(50,50);
     usleep(2000000);
     movement(50,0);
@@ -70,7 +70,7 @@ vector <uint16_t> calibrar(){
     if(left.reflected < 1900 && right.reflected < 1900){
         movement(0,0);
     }
-    //measure Black white sensors on spot two
+    /// measures Black white sensors on spot two
     uint16_t leftwhite2 = left.reflected;
     uint16_t rightwhite2 = right.reflected;
     uint16_t leftblack2 = left.reflected;
@@ -105,13 +105,12 @@ vector <uint16_t> calibrar(){
 int main(){
 	signal(SIGINT, exit_signal_handler); //exit function for ctrl c
 	
-	BP.detect(); //make sure Pi is communicating and up to date
+	BP.detect(); ///make sure Pi is communicating and up to date
 	
 	int error;
     	string go;
     
-    //setting up sensors
-	//BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
+    ///setting up sensors
 	BP.set_sensor_type(BWsensorleft, SENSOR_TYPE_NXT_LIGHT_ON);
 	BP.set_sensor_type(BWsensorright, SENSOR_TYPE_NXT_LIGHT_ON);
 	
@@ -138,18 +137,14 @@ int main(){
 	
 	while (true){
 		error = 0;
-        
-        //if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
-		//	cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-		//}
-		if(BP.get_sensor(BWsensorright, bwright) == 0){
+    		if(BP.get_sensor(BWsensorright, bwright) == 0){
 			cout << "Right sees " << bwright.reflected << endl;
-            if(bwright.reflected > 2100){
-                //set right motor speed to lower value
+         	if(bwright.reflected > 2100){
+               	 ///set right motor speed to lower value
                 movement(50,-50);
             }
             else{
-                //set right motor speed to normal value
+                ///set right motor speed to normal value
                 movement(50,50);
             }
 		}
@@ -159,11 +154,11 @@ int main(){
 		if(BP.get_sensor(BWsensorleft, bwleft) == 0){
 			cout << "Left sees " << bwleft.reflected << endl;
             if(bwleft.reflected > 2100){
-                //set left motor speed to lower value
+                ///set left motor speed to lower value
                 movement(-50,50);
             }
             else{
-                //set left motor speed to normal value
+                ///set left motor speed to normal value
                 movement(50,50);
             }
 		}
@@ -173,7 +168,7 @@ int main(){
     }
 }
 
-//Signal handler when Ctrl-C is pressed, makes sure nothing stays running
+///Signal handler when Ctrl-C is pressed, makes sure nothing stays running
 void exit_signal_handler(int signo){
 	if(signo == SIGINT){
 		BP.reset_all();
