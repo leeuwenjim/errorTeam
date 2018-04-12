@@ -1,4 +1,5 @@
 Dit is de GitHub repository voor ons project van Technische Informatica. 
+Ons zelfrijdend voertuig heeft de naam Arnold gekregen, we hebben deze naam in de code gebruikt voor gemak en stijl.
 
 In deze readme staan de requirements en kort wat we gebruikt hebben.
 
