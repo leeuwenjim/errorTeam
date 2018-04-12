@@ -1,59 +1,69 @@
-#include "BrickPi3.h" //for BrickPi3, this file sets up the BrickPi for usage
-#include <iostream> //for cout
-#include <unistd.h> //for sleep
-#include <signal.h> //for exit signals
-#include <iomanip> //for setw and setprecision
+#include "BrickPi3.h" /// For BrickPi3, this file sets up the BrickPi for usage
+#include <iostream> /// For cout
+#include <unistd.h> /// For sleep
+#include <signal.h> /// For exit signals
+#include <iomanip> /// For setw and setprecision
 using namespace std;
 
 BrickPi3 BP;
 
 void exit_signal_handler(int signo);
 
+/// Setting up sensors as functions so they can be reused
+
+/// Setup ultrasonic reading
+int ultrasonic(){
+	BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
+	sensor_ultrasonic_t Ultrasonic;
+	if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
+			cout << "Ultrasonic sensor sees this distance in cm: ";
+	}
+	return Ultrasonic.cm;
+}
+
+/// Setup left sensor reading
+int leftBW(){
+	BP.set_sensor_type(PORT_1, SENSOR_TYPE_NXT_LIGHT_ON);
+	sensor_light_t Blacknwhitelinks;
+	if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
+		cout << "Left sees " << Blacknwhitelinks.reflected << endl;
+	}
+	else{
+		cout << "Left sees black" << endl;
+	}
+	return Blacknwhitelinks.reflected;
+}
+
+/// Setup right sensor reading
+int rightBW(){
+	BP.set_sensor_type(PORT_2, SENSOR_TYPE_NXT_LIGHT_ON);
+	sensor_light_t Blacknwhiterechts;
+	if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
+		cout << "Right sees " << Blacknwhiterechts.reflected << endl;
+	}
+	else{
+		cout << "Right sees black" << endl;
+	}
+	return BlacknWhiterechts.reflected;
+}
+
+/// Main function is used to check all sensors, f.e. for testing
 int main(){
-	signal(SIGINT, exit_signal_handler); //exit function for ctrl c
+	signal(SIGINT, exit_signal_handler); /// Exit function for ctrl c
 	
-	BP.detect(); //make sure Pi is communicating and up to date
+	BP.detect(); /// Make sure Pi is communicating and up to date
 	
 	int error;
 	
-	//setting up sensors
-	BP.set_sensor_type(PORT_3, SENSOR_TYPE_NXT_ULTRASONIC);
-	BP.set_sensor_type(PORT_1, SENSOR_TYPE_NXT_LIGHT_ON);
-	BP.set_sensor_type(PORT_2, SENSOR_TYPE_NXT_LIGHT_ON);
-	BP.set_sensor_type(PORT_4, SENSOR_TYPE_TOUCH);
-	
-	sensor_ultrasonic_t Ultrasonic;
-	sensor_touch_t Touch;
-	sensor_light_t Blacknwhitelinks;
-	sensor_light_t Blacknwhiterechts;
-	
-	while (true){
+	while (true){ /// Check sensors
 		error = 0;
-		
-		if(BP.get_sensor(PORT_3, Ultrasonic) == 0){
-			cout << "Ultrasonic sensor sees this distance in cm: " << Ultrasonic.cm << endl;
-		}
-		if(BP.get_sensor(PORT_4, Touch) == 0){
-			cout << "Touch sensor was pressed" << Touch.pressed << endl;
-		}
-		if(BP.get_sensor(PORT_2, Blacknwhiterechts) == 0){
-			cout << "Right sees " << Blacknwhiterechts.reflected << endl;
-		}
-		else{
-			cout << "Right sees black" << endl;
-		}
-		if(BP.get_sensor(PORT_1, Blacknwhitelinks) == 0){
-			cout << "Left sees " << Blacknwhitelinks.reflected << endl;
-		}
-		else{
-			cout << "Left sees black" << endl;
-		}
-		
-		sleep(1); //wait before next check
+		ultrasonic();
+		linksZW();
+		rechtsZW();
 	}
 }
 
-//Signal handler when Ctrl-C is pressed, makes sure nothing stays running
+/// Signal handler when Ctrl-C is pressed, makes sure nothing stays running
 void exit_signal_handler(int signo){
 	if(signo == SIGINT){
 		BP.reset_all();

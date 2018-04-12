@@ -1,4 +1,3 @@
-.idea/
-cmake-build-debug/
 .codelite/
-CMakeLists.txt
+*.project
+*.workspace
