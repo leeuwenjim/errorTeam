@@ -1,4 +1,4 @@
-#include "Arnold.cpp"
+#include "Arnold.h"
 #include <iostream>
 #include <unistd.h>
 
