@@ -1,5 +1,5 @@
 #include "BrickPi3.h"
-#include "Arnold.h" 
+#include "Arnold.h" //
 #include <signal.h> //for exiting
 #include <iostream> //for cout and cin
 #include <iomanip> //for setw and setprecision
@@ -45,8 +45,7 @@ int Arnold::getUltrasonic() {
 
 ///
 /// move(uint16_t powerLeft, uint16_t powerRight)
-/// 	powerLeft: speed the left motor has to rotate
-/// 	powerRight: speed the right motor has to rotate
+/// powerLeft: tells the speed for left motor, powerRight: tells the speed for right motor
 ///
 /// this function will move arnolds base motors with the given speed
 ///
