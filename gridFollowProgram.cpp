@@ -233,7 +233,7 @@ int main()
         }
     }
 
-    arnold.stop();
+    arnold.reset();
     
 	return 0;
 }
