@@ -297,7 +297,7 @@ void Arnold::goAroundObstacle() {
     this->turn_ultrasonic(2);	
     this->move(20,20);
     while(true){ ///Make sure Arnold gets back on line
-        if(this->getLeftBW()>1900 && this->getRightBW() >1900){
+        if(this->leftSideOnLine() && this->rightSideOnLine()){
             this->stop();
             sleep(1);
             this->crossNavigator(2);
