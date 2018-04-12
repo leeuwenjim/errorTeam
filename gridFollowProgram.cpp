@@ -93,6 +93,7 @@ int main()
     int userInputIntX;
     int userInputIntY;
     int directionTargetStart = 1;
+    float lasUltrasonicResult = 255.0;
     
     // Setup Arnold
     arnold.calibrate();
@@ -169,6 +170,7 @@ int main()
     cout << endl;
     
     while(not (coordinateArnold == destinationNode.coordinate)){
+        lasUltrasonicResult = arnold.getUltrasonic();
         //cout << "<<<<New iteration>>>>" << endl;
         //cout << "Current coordinate is: " << coordinateArnold.x << ' ' << coordinateArnold.y << endl;
         //cout << "Target coordinate is: " << route[nodeCounter].x << ' ' << route[nodeCounter].y << endl;
@@ -181,8 +183,9 @@ int main()
             arnold.crossNavigator(turnValuesArnold[nodeCounter]);
             directionArnold = getDirection(route[nodeCounter], route[nodeCounter + 1]);
             nodeCounter++;
-        }else if(arnold.getUltrasonic() <= minDistanceObstacles && arnold.getUltrasonic() > 2){
+        }else if(lasUltrasonicResult <= minDistanceObstacles && arnold.getUltrasonic() > 2){
             cout << "Obstacle detected!!" << endl;
+            cout << lasUltrasonicResult << "cm" << endl;
             arnold.move(-standardPowerValue, -standardPowerValue);
             grid[route[nodeCounter].x][route[nodeCounter].y].blocked = true;
             while(not(arnold.leftSideOnLine() && arnold.rightSideOnLine())){
