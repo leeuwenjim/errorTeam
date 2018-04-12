@@ -37,6 +37,7 @@ public:
 	void turn(int side); ///< turns arnold 90 degrees
 	void turnDegrees(int degrees);
 	void goAroundObstacle(); ///< function that goes around an obstacle, and gets back on the line
+	void reset(); ///< fuction that will reset arnold
 };
 
 #endif

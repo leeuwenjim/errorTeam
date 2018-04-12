@@ -349,6 +349,16 @@ void Arnold::turnDegrees(int degrees) {
 	this->stop();
 }
 
+///
+/// reset()
+///
+/// This function will stop the motors and reset the BrickPi
+///
+void Arnold::reset() {
+	this->stop();
+	BP.reset_all();
+}
+
 /// 
 /// exit_signal_handler(int signo)
 ///
