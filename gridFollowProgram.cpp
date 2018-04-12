@@ -13,7 +13,7 @@ unsigned int directionArnold; // variable to store Arnold's direction
 vector<int> turnValuesArnold; // A vector that stores the input values used by the function crossNavigator
 
 int minDistanceObstacles = 10;
-uint16_t standardPowerValue = 10;
+uint16_t standardPowerValue = 30;
 
 // variables to setup the grid
 unsigned int gridSizeX = 5;
@@ -189,6 +189,9 @@ int main()
                 usleep(100000);
             }
             arnold.stop();
+            arnold.move(40, 40);
+            usleep(800000);
+            arnold.stop();
             route = aStar<5, 5>(grid[coordinateArnold.x][coordinateArnold.y], grid, destinationNode);
             nodeCounter = 0;
             directionTargetStart = getDirection(coordinateArnold, route[0]);
@@ -222,6 +225,7 @@ int main()
                 }
                 
                 turnValuesArnold = generateTurnValues(route, directionArnold);
+                cout << "Current coordinate: " << coordinateArnold.x << ' ' << coordinateArnold.y << endl;
             }
             continue;
         }else{
