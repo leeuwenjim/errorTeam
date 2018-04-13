@@ -5,7 +5,7 @@
 using namespace std;
 
 Arnold arnold;
-
+/** ultrasonic test print*/
 int main() {
 	while(true) {
 	cout << arnold.getUltrasonic() << endl;
