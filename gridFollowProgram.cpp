@@ -6,11 +6,11 @@
 using namespace std;
 
 Arnold arnold;
-Coordinate coordinateArnold; /// variable to store Arnold's current location
-vector<Coordinate> route; /// variable to store the route to the destination, this doesn't include the starting coordinate
-unsigned int nodeCounter = 0; /// variable used to count how far on the route Arnold is
-unsigned int directionArnold; /// variable to store Arnold's direction
-vector<int> turnValuesArnold; /// A vector that stores the input values used by the function crossNavigator
+Coordinate coordinateArnold; ///< variable to store Arnold's current location
+vector<Coordinate> route; ///< variable to store the route to the destination, this doesn't include the starting coordinate
+unsigned int nodeCounter = 0; ///< variable used to count how far on the route Arnold is
+unsigned int directionArnold; ///< variable to store Arnold's direction
+vector<int> turnValuesArnold; ///< A vector that stores the input values used by the function crossNavigator
 
 int minDistanceObstacles = 10;
 uint16_t standardPowerValue = 30;
@@ -18,7 +18,7 @@ uint16_t standardPowerValue = 30;
 /// variables to setup the grid
 unsigned int gridSizeX = 5;
 unsigned int gridSizeY = 5;
-static Node grid[5][5]; // The array to store the grid
+static Node grid[5][5]; ///< The array to store the grid
 
 int tmp;
 
@@ -93,10 +93,10 @@ vector<int> generateTurnValues(const vector<Coordinate> & path, const int & star
 
 int main()
 {
-    int userInputIntX; /// variable to store userinput
-    int userInputIntY; /// variable to store more userinput
-    int directionTargetStart = 1; /// variable to store wich direction Arnold is currently looking in
-    float lasUltrasonicResult = 255.0; /// variable to store the result of the ultrasonic sensor
+    int userInputIntX; ///< variable to store userinput
+    int userInputIntY; ///< variable to store more userinput
+    int directionTargetStart = 1; ///< variable to store wich direction Arnold is currently looking in
+    float lasUltrasonicResult = 255.0; ///< variable to store the result of the ultrasonic sensor
     
     /** Setup Arnold */
     arnold.calibrate();
