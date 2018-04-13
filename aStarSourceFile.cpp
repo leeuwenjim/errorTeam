@@ -19,7 +19,7 @@ Node::Node(){
 }
 
 /**
-* _blocked: set the Node blocked if true, unblocked is false, _xCoordinate: sets the x coordinate for this Node, _yCoordinate: sets the y coordinate for this Node
+* _blocked: sets the Node blocked if true, unblocked if false, _xCoordinate: sets the x coordinate for this Node, _yCoordinate: sets the y coordinate for this Node
 *
 * Constructor for the Node class
 */
