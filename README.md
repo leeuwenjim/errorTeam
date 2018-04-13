@@ -17,9 +17,16 @@ Gebruikte stijlen:
   - /** Voor gedetaileerde uitleg */ 
 - camelCase voor functies, uitgezonderd exit signal handler ivm opvallendheid
 
-Compilen en runnen:
+Clone repository:
+- git clone https://github.com/leeuwenjim/errorTeam.git
+- cd errorTeam/
 
- - git clone https://github.com/leeuwenjim/errorTeam.git
- - cd errorTeam/
- - chmod +x buildarnold.sh
- - ./buildarnold.sh
+Compile & Run lineFollower:
+ - g++ BrickPi3.cpp Arnold.cpp lineFollower.cpp -std=c++14 -o lineFollower
+ - ./lineFollower
+
+
+Compile & Run gridFollower:
+- g++ BrickPi3.cpp Arnold.cpp aStarSourceFile.cpp gridFollowProgram.cpp -std=c++14 -o gridFollower
+ - ./gridFollower
+
