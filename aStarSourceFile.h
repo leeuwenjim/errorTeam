@@ -2,32 +2,40 @@
 #define aStarSourceFile_h_
 #include <algorithm>
 
-// Coordinate struct to store XY coordinates.
+/** Coordinate struct to store XY coordinates. */
 struct Coordinate{
-    int x;
-    int y;
+    int x; /**< x coordinate */
+    int y; /**< y coordinate */
 };
 
 bool operator==(const Coordinate & lhs, const Coordinate & rhs);
 
-// The class Node is used to store all the information for a node/cell in the grid.
+/** The class Node is used to store all the information for a node/cell in the grid. */
 class Node{
 public:
-    bool blocked;
-    Coordinate coordinate;
-    Coordinate parentCoordinate;
-    unsigned int gCost; // Distance from source
-    unsigned int hCost; // Distance from destination
-    unsigned int fCost; // hCost + gCost
+    bool blocked; /**< Variable to store whether the Node is blocked or not */
+    Coordinate coordinate; /**< Coordinate instance to store the Node's coordinate */
+    Coordinate parentCoordinate; /**< Coordinate instance to store the coordinate of the Node's parent */
+    unsigned int gCost; /**< variable to store the distance from source */
+    unsigned int hCost; /**< variable to store the distance from destination */
+    unsigned int fCost; /**< variable to store hCost + gCost */
     
+    /** The default constructor */
     Node();
     
+    /** Constructor with parameters */
     Node(bool _blocked, unsigned int _xCoordinate, unsigned int _yCoordinate);
     
+    /** Function to update and store the fCost */
     void updateFCost();
     
 };
 
+/**
+* vectorToUse: vector to search in, variableToSearch: variable to find in vectorToUse
+* 
+* Template fucntion to check if variableToSearch of type T is in vectorToUse
+*/
 template<typename T>
 bool isInVector(std::vector<T> vectorToUse, T variableToSearch){
     for(unsigned int i=0; i<vectorToUse.size(); i++){
@@ -38,32 +46,36 @@ bool isInVector(std::vector<T> vectorToUse, T variableToSearch){
     return false;
 }
 
+/**
+* _currentNode: The starting position, _grid: The grid to navigate in, _destination: the destination position
+*
+* Template function that uses the A-star algorithm to calculate a path from the _currentNode to the _destination on the _grid
+*/
 template<size_t xSize, size_t ySize>
 std::vector<Coordinate> aStar(Node _currentNode, Node _grid[xSize][ySize], Node _destination){
-    // This function is used to calculate a route from the _currentNode to the _destination Node on the _grid
-    std::vector<Coordinate> openNodes = {_currentNode.coordinate}; // list with coordinates of Nodes that have a calculated fCost
-    std::vector<Coordinate> closedNodes; // list with coordinates of Nodes that have been visited
-    std::vector<Coordinate> neighbours; // list with coordinates of Nodes that are neighbouring the current Node
-    std::vector<Coordinate> returnVector; // list with coordinates that form the route to the destination
-    Node currentNode; // The Node that is currently being visited
-    Node currentNeighbour; // The neighbouring Node whose fCost is currently being calculated
-    unsigned int shortestFCost = 9999; // variable to store the smallest fCost
-    unsigned int currentIndex = 0; // variable to store the index of the currentNode in the openNodes
-    int counter = 0; // To detect when an infinite while(true) loop is running
+    std::vector<Coordinate> openNodes = {_currentNode.coordinate}; ///< list with coordinates of Nodes that have a calculated fCost
+    std::vector<Coordinate> closedNodes; ///< list with coordinates of Nodes that have been visited
+    std::vector<Coordinate> neighbours; ///< list with coordinates of Nodes that are neighbouring the current Node
+    std::vector<Coordinate> returnVector; //< list with coordinates that form the route to the destination
+    Node currentNode; ///< The Node that is currently being visited
+    Node currentNeighbour; ///< The neighbouring Node whose fCost is currently being calculated
+    unsigned int shortestFCost = 9999; ///< variable to store the smallest fCost
+    unsigned int currentIndex = 0; ///< variable to store the index of the currentNode in the openNodes
+    int counter = 0; ///< To detect when an infinite while(true) loop is running
     
-    std::cout << "_currentCoordinate = " << _currentNode.coordinate.x << ' ' << _currentNode.coordinate.y << std::endl; // To monitor wich Node is used as origin
-    // Code below calculates the hCost and updates the fCost of the origin Node, gCost is set to 0
+    std::cout << "_currentCoordinate = " << _currentNode.coordinate.x << ' ' << _currentNode.coordinate.y << std::endl; ///< To monitor wich Node is used as origin
+    /// Code below calculates the hCost and updates the fCost of the origin Node, gCost is set to 0
     _grid[_currentNode.coordinate.x][_currentNode.coordinate.y].gCost = 0;
     _grid[_currentNode.coordinate.x][_currentNode.coordinate.y].hCost =
         (_currentNode.coordinate.x < _destination.coordinate.x)? (_destination.coordinate.x - _currentNode.coordinate.x) * 10 : (_currentNode.coordinate.x - _destination.coordinate.x)*10;
     _grid[_currentNode.coordinate.x][_currentNode.coordinate.y].updateFCost();
     
-    // The while(true) loop below is the actual algorithm
+    /// The while(true) loop below is the actual algorithm
     while(true){
         std::cout << "\n<<<<<<<<>>>>>>>>" << std::endl;
         
-        shortestFCost = 9999; // reset the shortestFCost to a very high value.
-        // Code below is used to detect and deal with a infinite loop
+        shortestFCost = 9999; /// reset the shortestFCost to a very high value.
+        /// Code below is used to detect and deal with a infinite loop
         if(counter > 25){
             std::cout << "infinite loop detected!" << std::endl;
             return returnVector;
@@ -71,7 +83,7 @@ std::vector<Coordinate> aStar(Node _currentNode, Node _grid[xSize][ySize], Node 
         std::cout << counter << std::endl;
         counter++;
         
-        // Code below determines wich Node from the openNodes should be visited next, this is done through the lowest fCost
+        /// Code below determines wich Node from the openNodes should be visited next, this is done through the lowest fCost
         for(unsigned int i=0; i<openNodes.size(); i++){
             if(_grid[openNodes[i].x][openNodes[i].y].fCost < shortestFCost){
                 shortestFCost = _grid[openNodes[i].x][openNodes[i].y].fCost;
@@ -82,18 +94,18 @@ std::vector<Coordinate> aStar(Node _currentNode, Node _grid[xSize][ySize], Node 
         }
         
         currentNode = _grid[openNodes[currentIndex].x][openNodes[currentIndex].y];
-        openNodes.erase(openNodes.begin() + currentIndex); // remove the current Node from the openNodes
-        closedNodes.push_back(currentNode.coordinate); // add the current Node to the closedNodes
+        openNodes.erase(openNodes.begin() + currentIndex); /// remove the current Node from the openNodes
+        closedNodes.push_back(currentNode.coordinate); /// add the current Node to the closedNodes
         
         std::cout << "Current Node = " << currentNode.coordinate.x << ' ' << currentNode.coordinate.y << std::endl;
         
-        // If we have reached our destination, there is no reason to continue
+        /// If we have reached our destination, there is no reason to continue
         if(currentNode.coordinate == _destination.coordinate){
             std::cout << "Destination reached" << std::endl;
             break;
         }
         
-        // The four code blocks below update the fCost and parent of the neighbours and update the openNodes
+        /// The four code blocks below update the fCost and parent of the neighbours and update the openNodes
         if(currentNode.coordinate.x != 0){
             currentNeighbour = _grid[currentNode.coordinate.x - 1][currentNode.coordinate.y];
             if(currentNeighbour.blocked == false && isInVector(closedNodes, currentNeighbour.coordinate) == false){ // If the neighbour is blocked or the neighbour is already visited, there is no reason to calculate its fCost
@@ -169,7 +181,7 @@ std::vector<Coordinate> aStar(Node _currentNode, Node _grid[xSize][ySize], Node 
     }
     counter = 0;
     
-    // The while(true) loop below constructs the route/path from the origin Node to the destination Node
+    /// The while(true) loop below constructs the route/path from the origin Node to the destination Node
     while(true){
         counter++;
         if(counter > 25){
