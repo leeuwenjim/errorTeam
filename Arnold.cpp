@@ -11,11 +11,11 @@ BrickPi3 BP;
 void exit_signal_handler(int signo);
 
 
-///
-/// Constructor Arnold class
-///
-/// This constructor will initialize the sensor and motor ports, init the BrickPi3 and set the sensor types
-///
+/**
+* Constructor Arnold class
+*
+* This constructor will initialize the sensor and motor ports, init the BrickPi3 and set the sensor types
+*/
 Arnold::Arnold() {
 	signal(SIGINT, exit_signal_handler);
 	BP.detect();
@@ -32,7 +32,7 @@ Arnold::Arnold() {
 	BP.set_sensor_type(Arnold::ultrasonic, SENSOR_TYPE_NXT_ULTRASONIC);
 }
 
-/*
+/**
 * Returns the distance in centimeters that the ultrasonic sensor measures
 */
 int Arnold::getUltrasonic() {
@@ -42,7 +42,7 @@ int Arnold::getUltrasonic() {
 }
 
 
-/*
+/**
 * powerLeft: tells the speed for left motor, powerRight: tells the speed for right motor
 *
 * this function will move arnolds base motors with the given speed
@@ -52,7 +52,7 @@ void Arnold::move(uint16_t powerLeft, uint16_t powerRight) {
 	BP.set_motor_power(Arnold::motorright, powerRight);
 }
 
-/*
+/**
 * this function will stop the motors to ensure no runaway motors.
 */
 void Arnold::stop()
@@ -62,7 +62,7 @@ void Arnold::stop()
 }
 
 
-/*position: tells the function to turn the ultrasonic to the left or right with 90 degrees
+/** position: tells the function to turn the ultrasonic to the left or right with 90 degrees
 * 
 * turns the head to the left is position is 1, and to the right if position is 2
 */
@@ -80,7 +80,7 @@ void Arnold::turn_ultrasonic(int position){
 	}	
 }
 
-/*
+/**
 * Returns the reflection value the left reflection sensor measures
 */ 
 int Arnold::getLeftBW() {
@@ -89,7 +89,7 @@ int Arnold::getLeftBW() {
 	return Blacknwhitelinks.reflected;
 }
 
-/*
+/**
 * Returns the reflection value the right reflection sensor measures
 */
 int Arnold::getRightBW() {
@@ -98,21 +98,21 @@ int Arnold::getRightBW() {
 	return Blacknwhiterechts.reflected;
 }
 
-/*
+/**
 * gets left white value that was set during calibration
 */
 int Arnold::getLeftWhiteValue() {
 	return leftWhiteValue;
 }
 
-/*
+/**
 * gets right white value that was set during calibration
 */
 int Arnold::getRightWhiteValue() {
 	return rightWhiteValue;
 }
 
-/*
+/**
 * This function calibrates arnold by measuring the reflection on the left and right sensor on two spots. The average of the measurements is stored int the leftWhiteValue and rightWhiteValue
 */ 
 void Arnold::calibrate() {
@@ -142,7 +142,7 @@ void Arnold::calibrate() {
 	
 }
 
-/*
+/**
 * returns if the left side sensor is measuring something else than white
 */
 bool Arnold::leftSideOnLine() {
@@ -153,7 +153,7 @@ bool Arnold::leftSideOnLine() {
 	return false;
 }
 
-/*
+/**
 * returns if the right side sensor is measuring something else than white
 */
 bool Arnold::rightSideOnLine() {
@@ -164,7 +164,7 @@ bool Arnold::rightSideOnLine() {
 	return false;
 }
 
-/*
+/**
 * 	margin: the new margin
 *
 * sets the margin that will be used in depending if the sensor is measuring white or not. Can be seen as a sensitivity setting
@@ -173,7 +173,7 @@ int Arnold::setBWMargin(uint16_t margin) {
 	this->BWMargin = margin;
 }
 
-/*
+/**
 * This algoritm will follow the line by incrementing and decrementing the speed of the motors. 
 */
 void Arnold::lineFollowAlgoritm() {
@@ -210,7 +210,7 @@ void Arnold::lineFollowAlgoritm() {
 		
 }
 
-/*
+/**
 * direction: the direction arnold has to travel on calling this function. 0 for left, 1 for straight, 2 for right turn, 3 for 180 turn
 *
 *	will move arnold at a crosspoint. This function doesn't detect crosspoints, only moves arnold when called. Normal usage is when a crossing is detected, this function is called to direct arnold where to go
@@ -242,7 +242,7 @@ void Arnold::crossNavigator(int direction) {
 	}
 }
 
-/*
+/**
 * passes a obstacle based on ultrasonic, always passes right
 */
 void Arnold::goAroundObstacle() {
@@ -282,7 +282,7 @@ void Arnold::goAroundObstacle() {
 }
 
 
-/*
+/**
 *		side: indicates which side arnold will turn to
 *
 * this function turns arnold 90 degrees to the left(side = 1) or right(side = 2)
@@ -303,7 +303,7 @@ void Arnold::turn(int side){
     }
 }
 
-/*
+/**
 *	degrees: amount of degrees that arnold will turn
 *
 * This function will turn arnold by a given amount of degrees, positive for to the right, negative for to the left
@@ -320,7 +320,7 @@ void Arnold::turnDegrees(int degrees) {
 	this->stop();
 }
 
-/*
+/**
 * This function will stop the motors and reset the BrickPi
 */
 void Arnold::reset() {
@@ -328,7 +328,7 @@ void Arnold::reset() {
 	BP.reset_all();
 }
 
-/*
+/**
 * exit handler (ctrl-c)
 */
 void exit_signal_handler(int signo) {
